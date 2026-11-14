@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ZenoGram X — Qishki Liquid Glass Telegram</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 15% 15%, #0c3547 0%, #05131d 45%, #02080d 100%);
+      color: #e6f7ff;
+      overflow: hidden;
+      height: 100dvh;
+      width: 100vw;
+      margin: 0;
+      transition: background 0.6s ease;
+    }
+
+    /* Winter Wallpaper Themes */
+    body.theme-snow-night { background: radial-gradient(circle at 15% 15%, #0c3547 0%, #05131d 45%, #02080d 100%); }
+    body.theme-aurora { background: radial-gradient(circle at 20% 10%, #064e3b 0%, #0f172a 48%, #1e1b4b 100%); }
+    body.theme-ice-palace { background: radial-gradient(circle at 50% 0%, #164e63 0%, #082f49 52%, #020617 100%); }
+    body.theme-deep-ocean { background: radial-gradient(circle at 80% 20%, #1d4ed8 0%, #091526 50%, #010409 100%); }
+
+    /* Liquid Glass Surfaces */
+    .liquid-glass {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.11) 0%, rgba(165, 243, 252, 0.04) 50%, rgba(255, 255, 255, 0.07) 100%);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      border: 1px solid rgba(186, 230, 253, 0.24);
+      box-shadow: 0 8px 32px rgba(0, 10, 20, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .liquid-glass-strong {
+      background: linear-gradient(160deg, rgba(12, 36, 50, 0.84) 0%, rgba(5, 18, 28, 0.91) 100%);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(125, 211, 252, 0.26);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .liquid-btn {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 55%, #38bdf8 100%);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .liquid-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(6, 182, 212, 0.52); }
+    .liquid-btn:active { transform: scale(0.97); }
+
+    .keypad-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(186, 230, 253, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+      transition: all 0.12s ease;
+    }
+    .keypad-btn:active { background: rgba(56, 189, 248, 0.28); transform: scale(0.94); }
+
+    @keyframes snowPulse {
+      0%, 100% { box-shadow: 0 0 12px rgba(56, 189, 248, 0.55), 0 0 24px rgba(168, 85, 247, 0.35); }
+      50% { box-shadow: 0 0 20px rgba(125, 211, 252, 0.9), 0 0 36px rgba(192, 132, 252, 0.55); }
+    }
+    .premium-aura { animation: snowPulse 3s infinite ease-in-out; border: 2px solid #7dd3fc; }
+
+    .story-ring-free { background: linear-gradient(135deg, #2dd4bf, #38bdf8); padding: 2px; }
+    .story-ring-premium { background: linear-gradient(135deg, #f59e0b, #ec4899, #38bdf8); padding: 2.5px; }
+    .story-ring-seen { background: rgba(148, 163, 184, 0.35); padding: 2px; }
+
+    @keyframes floatPlane {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+    .float-logo { animation: floatPlane 4s ease-in-out infinite; }
+
+    @keyframes stickerBounce {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(-5deg); }
+      75% { transform: scale(1.12) rotate(5deg); }
+    }
+    .sticker-anim { display: inline-block; animation: stickerBounce 2.2s infinite ease-in-out; }
+
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(125, 211, 252, 0.25); border-radius: 99px; }
+
+    #snow-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
+
+    .msg-bubble-out {
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.72) 0%, rgba(2, 132, 199, 0.78) 100%);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(186, 230, 253, 0.38);
+      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .msg-bubble-in {
+      background: rgba(15, 39, 54, 0.74);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(186, 230, 253, 0.16);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+  </style>
+</head>
+<body class="theme-snow-night select-none sm:select-auto">
+
+  <!-- Falling Snow Background -->
+  <canvas id="snow-canvas"></canvas>
+
+  <!-- Ambient Orbs -->
+  <div class="fixed -top-24 -left-24 w-80 h-80 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed bottom-0 right-0 w-96 h-96 rounded-full bg-teal-400/15 blur-3xl pointer-events-none z-0"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-[120] flex flex-col gap-2 w-[92%] max-w-md pointer-events-none"></div>
+
+  <!-- =========================================================
+       PASSCODE LOCK SCREEN (644.jpg Feature)
+       ========================================================= -->
+  <section id="screen-passcode-lock" class="hidden fixed inset-0 z-[110] bg-slate-950/92 backdrop-blur-2xl flex flex-col items-center justify-between px-6 py-12">
+    <div class="text-center mt-4">
+      <div class="w-16 h-16 rounded-3xl liquid-glass mx-auto flex items-center justify-center text-cyan-300 text-2xl mb-4 shadow-lg">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 class="text-xl font-bold text-white">ZenoGram X Qulflangan</h2>
+      <p id="passcode-lock-subtitle" class="text-xs text-cyan-200/80 mt-1">4 xonali kirish kodini kiriting</p>
+
+      <!-- 4 Dots Indicator -->
+      <div id="passcode-dots" class="flex items-center justify-center gap-4 mt-6">
+        <span class="w-4 h-4 rounded-full border-2 border-cyan-300/60 transition-all"></span>
+        <span class="w-4 h-4 rounded-full border-2 border-cyan-300/60 transition-all"></span>
+        <span class="w-4 h-4 rounded-full border-2 border-cyan-300/60 transition-all"></span>
+        <span class="w-4 h-4 rounded-full border-2 border-cyan-300/60 transition-all"></span>
+      </div>
+    </div>
+
+    <!-- Passcode Keypad -->
+    <div class="w-full max-w-xs grid grid-cols-3 gap-3">
+      <button onclick="enterPasscodeDigit('1')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">1</button>
+      <button onclick="enterPasscodeDigit('2')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">2</button>
+      <button onclick="enterPasscodeDigit('3')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">3</button>
+      <button onclick="enterPasscodeDigit('4')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">4</button>
+      <button onclick="enterPasscodeDigit('5')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">5</button>
+      <button onclick="enterPasscodeDigit('6')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">6</button>
+      <button onclick="enterPasscodeDigit('7')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">7</button>
+      <button onclick="enterPasscodeDigit('8')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">8</button>
+      <button onclick="enterPasscodeDigit('9')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">9</button>
+      <button onclick="cancelPasscodeSetup()" id="passcode-cancel-btn" class="keypad-btn h-16 rounded-2xl text-xs font-semibold text-slate-300 cursor-pointer">Bekor</button>
+      <button onclick="enterPasscodeDigit('0')" class="keypad-btn h-16 rounded-2xl text-2xl font-bold text-white cursor-pointer">0</button>
+      <button onclick="backspacePasscodeDigit()" class="keypad-btn h-16 rounded-2xl text-lg text-rose-300 cursor-pointer"><i class="fa-solid fa-delete-left"></i></button>
+    </div>
+
+    <p class="text-[11px] text-slate-400">❄️ Shaxsiy ma'lumotlaringiz himoyalangan</p>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 1: WELCOME / SPLASH (622.jpg)
+       ========================================================= -->
+  <section id="screen-welcome" class="relative z-10 h-full w-full flex flex-col items-center justify-between px-6 py-10 max-w-lg mx-auto">
+    <div class="w-full flex items-center justify-between">
+      <div class="liquid-glass px-3.5 py-1.5 rounded-full flex items-center gap-2 text-xs font-medium text-cyan-200">
+        <i class="fa-regular fa-snowflake animate-spin" style="animation-duration: 9s;"></i>
+        <span>ZenoGram X • 2026</span>
+      </div>
+      <button onclick="openOwnerQuickModal()" class="liquid-glass px-3.5 py-1.5 rounded-full text-xs font-semibold text-amber-300 hover:bg-amber-400/10 transition flex items-center gap-1.5 cursor-pointer">
+        <i class="fa-solid fa-crown"></i>
+        <span>Ilova Egasi</span>
+      </button>
+    </div>
+
+    <div class="flex flex-col items-center text-center my-auto w-full">
+      <div class="relative mb-6 float-logo">
+        <div class="w-28 h-28 rounded-full liquid-glass flex items-center justify-center shadow-[0_0_50px_rgba(34,211,238,0.35)] border border-cyan-200/40 relative">
+          <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-teal-500 via-cyan-400 to-sky-300 flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-paper-plane text-white text-3xl -ml-1 mt-0.5"></i>
+          </div>
+          <span class="absolute -top-1 -right-1 text-2xl">❄️</span>
+        </div>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-cyan-100 to-teal-300 bg-clip-text text-transparent mb-2">
+        ZenoGram X
+      </h1>
+
+      <p id="welcome-slide-title" class="text-sm sm:text-base font-semibold text-cyan-300 mb-1.5">
+        "Dunyodagi eng tezkor va xavfsiz qishki xabarchi."
+      </p>
+      <p id="welcome-slide-desc" class="text-xs sm:text-sm text-slate-300/85 max-w-xs leading-relaxed min-h-[42px]">
+        Guruhlar, Kanallar, 24 soatlik Hikoyalar (Stories), ovozli xabarlar va ZenoGram Premium — barchasi bitta ilovada.
+      </p>
+
+      <div id="welcome-dots" class="flex items-center gap-2 mt-5">
+        <button onclick="setWelcomeSlide(0)" class="w-6 h-2 rounded-full bg-cyan-400 transition-all"></button>
+        <button onclick="setWelcomeSlide(1)" class="w-2 h-2 rounded-full bg-white/30 transition-all"></button>
+        <button onclick="setWelcomeSlide(2)" class="w-2 h-2 rounded-full bg-white/30 transition-all"></button>
+        <button onclick="setWelcomeSlide(3)" class="w-2 h-2 rounded-full bg-white/30 transition-all"></button>
+      </div>
+    </div>
+
+    <div class="w-full flex flex-col items-center gap-3">
+      <!-- Saved Accounts Quick Login Box (If user previously registered) -->
+      <div id="saved-accounts-welcome-box" class="hidden w-full liquid-glass rounded-2xl p-3">
+        <p class="text-[11px] font-semibold text-cyan-200 mb-2 flex items-center gap-1.5">
+          <i class="fa-solid fa-clock-rotate-left"></i> Saqlangan akkauntlar (Bir bosishda kirish):
+        </p>
+        <div id="saved-accounts-welcome-list" class="space-y-1.5 max-h-28 overflow-y-auto"></div>
+      </div>
+
+      <button onclick="goToScreen('screen-auth')" class="liquid-btn w-full py-4 rounded-2xl text-slate-950 font-bold text-base tracking-wide shadow-xl cursor-pointer">
+        Suhbatni boshlash
+      </button>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 2: AUTH / REGISTRATION (623.jpg & 627.jpg)
+       ========================================================= -->
+  <section id="screen-auth" class="hidden relative z-10 h-full w-full flex flex-col justify-between px-5 py-5 max-w-md mx-auto overflow-y-auto">
+    <div class="flex items-center justify-between">
+      <button onclick="goToScreen('screen-welcome')" class="w-10 h-10 rounded-full liquid-glass flex items-center justify-center text-cyan-100 hover:bg-white/10 cursor-pointer">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <div class="flex items-center gap-1.5 text-teal-300 font-bold text-sm">
+        <i class="fa-regular fa-snowflake"></i>
+        <span>ZenoGram X</span>
+      </div>
+      <button onclick="fillOwnerCredentials()" class="liquid-glass px-3 py-1.5 rounded-full text-[11px] font-semibold text-amber-300 border border-amber-400/30 hover:bg-amber-400/10 cursor-pointer">
+        <i class="fa-solid fa-key mr-1"></i>Ega (Owner)
+      </button>
+    </div>
+
+    <div class="my-auto py-2">
+      <div class="text-center mb-4">
+        <h2 class="text-2xl font-bold text-white mb-1">Hisob ma'lumotlari</h2>
+        <p class="text-xs text-slate-300/80">ID raqamingiz va @username kiriting (Hisob avtomatik eslab qolinadi)</p>
+      </div>
+
+      <!-- Saved Accounts Quick Switch -->
+      <div id="saved-accounts-auth-box" class="hidden mb-3 liquid-glass rounded-2xl p-2.5">
+        <p class="text-[10px] uppercase tracking-wider text-cyan-300 font-bold mb-1.5 px-1">Avval kirilgan akkauntlar:</p>
+        <div id="saved-accounts-auth-list" class="flex gap-2 overflow-x-auto pb-1"></div>
+      </div>
+
+      <div class="liquid-glass rounded-3xl p-4 space-y-3">
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-cyan-200/80 mb-1">Ismingiz</label>
+          <div class="relative flex items-center">
+            <input id="auth-name" type="text" placeholder="Masalan: Jasurbek" maxlength="32"
+              onfocus="activeAuthField = 'auth-name'"
+              class="w-full bg-slate-950/50 border border-cyan-300/25 focus:border-cyan-400 rounded-2xl px-4 py-2.5 text-sm text-white placeholder-slate-400 outline-none transition" />
+            <i class="fa-solid fa-user text-teal-400 absolute right-4 text-sm"></i>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-[11px] font-semibold uppercase tracking-wider text-cyan-200/80">ID Raqami</label>
+            <button type="button" onclick="generateRandomId()" class="text-[11px] text-cyan-300 hover:underline cursor-pointer">
+              <i class="fa-solid fa-dice mr-1"></i>Tasodifiy ID
+            </button>
+          </div>
+          <div class="relative flex items-center">
+            <input id="auth-id" type="text" inputmode="numeric" placeholder="Masalan: 74920" maxlength="8"
+              onfocus="activeAuthField = 'auth-id'"
+              class="w-full bg-slate-950/50 border border-cyan-300/25 focus:border-cyan-400 rounded-2xl px-4 py-2.5 text-sm text-white placeholder-slate-400 outline-none transition font-mono" />
+            <i class="fa-solid fa-id-card text-teal-400 absolute right-4 text-sm"></i>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-cyan-200/80 mb-1">Foydalanuvchi nomi</label>
+          <div class="relative flex items-center">
+            <input id="auth-username" type="text" placeholder="@username (masalan: @zenox)" maxlength="24"
+              onfocus="activeAuthField = 'auth-username'"
+              class="w-full bg-slate-950/50 border border-cyan-300/25 focus:border-cyan-400 rounded-2xl px-4 py-2.5 text-sm text-white placeholder-slate-400 outline-none transition" />
+            <span class="text-teal-400 font-bold absolute right-4 text-base">@</span>
+          </div>
+        </div>
+
+        <div id="owner-pin-box" class="hidden pt-1">
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-amber-300 mb-1">
+            <i class="fa-solid fa-shield-halved mr-1"></i>Ilova Egasi Maxfiy Kodi (PIN: 2026)
+          </label>
+          <input id="auth-owner-pin" type="password" inputmode="numeric" placeholder="PIN kodni kiriting (2026)" maxlength="6"
+            onfocus="activeAuthField = 'auth-owner-pin'"
+            class="w-full bg-amber-950/30 border border-amber-400/40 focus:border-amber-300 rounded-2xl px-4 py-2 text-sm text-amber-100 placeholder-amber-300/40 outline-none font-mono" />
+        </div>
+
+        <button id="auth-submit-btn" onclick="handleLoginOrRegister()" class="liquid-btn w-full py-3.5 rounded-2xl text-slate-950 font-bold text-sm flex items-center justify-center gap-2 mt-1 cursor-pointer">
+          <span>Davom etish</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Numeric Keypad -->
+    <div class="grid grid-cols-3 gap-1.5 pt-1">
+      <button type="button" onclick="pressKeypad('1')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">1</span><span class="text-[8px] text-slate-400">&nbsp;</span></button>
+      <button type="button" onclick="pressKeypad('2')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">2</span><span class="text-[8px] text-slate-400">ABC</span></button>
+      <button type="button" onclick="pressKeypad('3')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">3</span><span class="text-[8px] text-slate-400">DEF</span></button>
+      <button type="button" onclick="pressKeypad('4')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">4</span><span class="text-[8px] text-slate-400">GHI</span></button>
+      <button type="button" onclick="pressKeypad('5')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">5</span><span class="text-[8px] text-slate-400">JKL</span></button>
+      <button type="button" onclick="pressKeypad('6')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">6</span><span class="text-[8px] text-slate-400">MNO</span></button>
+      <button type="button" onclick="pressKeypad('7')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">7</span><span class="text-[8px] text-slate-400">PQRS</span></button>
+      <button type="button" onclick="pressKeypad('8')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">8</span><span class="text-[8px] text-slate-400">TUV</span></button>
+      <button type="button" onclick="pressKeypad('9')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">9</span><span class="text-[8px] text-slate-400">WXYZ</span></button>
+      <button type="button" onclick="generateRandomId()" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center text-cyan-300 cursor-pointer"><i class="fa-solid fa-wand-magic-sparkles text-xs"></i><span class="text-[8px]">AUTO ID</span></button>
+      <button type="button" onclick="pressKeypad('0')" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center cursor-pointer"><span class="text-base font-bold text-white leading-none">0</span><span class="text-[8px] text-slate-400">+</span></button>
+      <button type="button" onclick="backspaceKeypad()" class="keypad-btn rounded-2xl py-2 flex flex-col items-center justify-center text-rose-300 cursor-pointer"><i class="fa-solid fa-delete-left text-sm"></i><span class="text-[8px]">O'CHIRISH</span></button>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SCREEN 3: MAIN MESSENGER APP (629.jpg Layout + Full Telegram Features)
+       ========================================================= -->
+  <section id="screen-app" class="hidden relative z-10 h-full w-full flex overflow-hidden">
+
+    <!-- LEFT SIDEBAR (Chats / Contacts / Settings / Profile tabs) -->
+    <aside id="sidebar-panel" class="w-full md:w-[385px] lg:w-[415px] h-full flex flex-col liquid-glass-strong border-r border-cyan-300/20 shrink-0 relative">
+
+      <!-- TOP HEADER (Inspired by 629.jpg) -->
+      <div class="px-4 pt-3.5 pb-2.5 flex items-center justify-between border-b border-cyan-300/10">
+        <div class="flex items-center gap-2.5">
+          <!-- Stacked Mini Avatars + Title like 629.jpg -->
+          <button onclick="switchBottomTab('profile')" class="flex items-center -space-x-2 cursor-pointer">
+            <div id="top-bar-avatar" class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 border-2 border-slate-900 flex items-center justify-center text-xs font-extrabold text-white shadow">
+              Z
+            </div>
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 border-2 border-slate-900 flex items-center justify-center text-xs text-white shadow">
+              ❄️
+            </div>
+          </button>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h1 id="main-header-title" class="font-extrabold text-lg text-white tracking-tight">ZenoGram</h1>
+              <span id="header-my-badges" class="flex items-center gap-1"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <!-- Lock App Button (Appears when Passcode is enabled - 644.jpg!) -->
+          <button id="top-lock-btn" onclick="lockAppNow()" class="hidden liquid-glass w-9 h-9 rounded-full flex items-center justify-center text-cyan-300 hover:bg-cyan-400/20 transition cursor-pointer" title="Ilovani qulflash">
+            <i class="fa-solid fa-lock-open text-xs"></i>
+          </button>
+
+          <!-- Owner Crown Button (Visible only to Owner) -->
+          <button id="btn-owner-panel" onclick="openOwnerPanel()" class="hidden liquid-glass px-2.5 h-9 rounded-full text-amber-300 hover:bg-amber-400/15 transition text-xs font-bold flex items-center gap-1 cursor-pointer" title="Ilova Egasi Paneli">
+            <i class="fa-solid fa-crown"></i>
+            <span>Ega</span>
+          </button>
+
+          <!-- Search Toggle -->
+          <button onclick="toggleSearchBar()" class="w-9 h-9 rounded-full hover:bg-white/10 flex items-center justify-center text-cyan-100 transition cursor-pointer" title="Qidirish">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+          </button>
+
+          <!-- Menu Dots -->
+          <button onclick="openNewChatModal()" class="w-9 h-9 rounded-full hover:bg-white/10 flex items-center justify-center text-cyan-100 transition cursor-pointer" title="Yangi guruh / kanal">
+            <i class="fa-solid fa-ellipsis-vertical text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Search Input -->
+      <div id="search-bar-wrapper" class="hidden px-3.5 py-2 border-b border-cyan-300/10 bg-slate-950/30">
+        <div class="relative flex items-center">
+          <i class="fa-solid fa-magnifying-glass text-cyan-300/60 absolute left-3.5 text-xs"></i>
+          <input id="chat-search-input" type="text" oninput="renderChatList()" placeholder="Do'st, kanal yoki guruh izlash (@username / ID)..."
+            class="w-full bg-slate-950/60 border border-cyan-300/25 focus:border-cyan-400 rounded-2xl pl-9 pr-8 py-2 text-xs text-white placeholder-slate-400 outline-none" />
+          <button onclick="clearSearch()" class="absolute right-3 text-slate-400 hover:text-white text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <!-- =====================================================
+           TAB VIEW 1: CHATLAR (Chats + Stories + Folders)
+           ===================================================== -->
+      <div id="view-chats" class="flex-1 flex flex-col overflow-hidden">
+        <!-- 24h STORIES BAR (Feature #2) -->
+        <div class="px-3 py-2.5 border-b border-cyan-300/10 flex items-center gap-3 overflow-x-auto shrink-0">
+          <!-- Add My Story Button -->
+          <button onclick="openCreateStoryModal()" class="flex flex-col items-center gap-1 shrink-0 cursor-pointer group">
+            <div class="relative w-13 h-13 rounded-full p-0.5 border-2 border-dashed border-cyan-300/50 group-hover:border-cyan-300 transition flex items-center justify-center">
+              <div id="my-story-avatar" class="w-11 h-11 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold text-sm">
+                +
+              </div>
+              <span class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-cyan-400 text-slate-950 text-[10px] font-black flex items-center justify-center border border-slate-900">+</span>
+            </div>
+            <span class="text-[10px] text-cyan-200 font-medium">Hikoyam</span>
+          </button>
+
+          <!-- Dynamic Stories List -->
+          <div id="stories-bar-list" class="flex items-center gap-3"></div>
+        </div>
+
+        <!-- Folder Filter Tabs (Feature #1) -->
+        <div class="px-3 py-2 flex items-center gap-1.5 overflow-x-auto text-[11px] font-semibold border-b border-cyan-300/10 shrink-0">
+          <button onclick="setChatFilter('all')" id="tab-all" class="px-3 py-1 rounded-xl bg-cyan-500/25 text-cyan-200 border border-cyan-400/30 whitespace-nowrap cursor-pointer">Barchasi</button>
+          <button onclick="setChatFilter('private')" id="tab-private" class="px-3 py-1 rounded-xl text-slate-300 hover:bg-white/5 whitespace-nowrap cursor-pointer">Shaxsiy</button>
+          <button onclick="setChatFilter('groups')" id="tab-groups" class="px-3 py-1 rounded-xl text-slate-300 hover:bg-white/5 whitespace-nowrap cursor-pointer">Guruhlar</button>
+          <button onclick="setChatFilter('channels')" id="tab-channels" class="px-3 py-1 rounded-xl text-slate-300 hover:bg-white/5 whitespace-nowrap cursor-pointer">Kanallar</button>
+          <button onclick="setChatFilter('archived')" id="tab-archived" class="px-3 py-1 rounded-xl text-slate-300 hover:bg-white/5 whitespace-nowrap cursor-pointer">Arxiv</button>
+        </div>
+
+        <!-- Global User & Channel Search Results -->
+        <div id="global-search-results" class="hidden px-3 py-2 border-b border-cyan-300/15 bg-cyan-950/35 shrink-0">
+          <p class="text-[10px] uppercase tracking-wider text-cyan-300 font-bold px-1 mb-1">Global qidiruv natijalari:</p>
+          <div id="global-users-list" class="space-y-1 max-h-36 overflow-y-auto"></div>
+        </div>
+
+        <!-- Archived Chats Row (Like 629.jpg top row, only real archived chats, zero spam) -->
+        <div id="archived-banner-row" onclick="setChatFilter(chatFilter === 'archived' ? 'all' : 'archived')"
+          class="hidden mx-2.5 mt-2 px-3 py-2.5 rounded-2xl hover:bg-white/5 flex items-center gap-3 cursor-pointer border border-cyan-300/10">
+          <div class="w-11 h-11 rounded-full bg-slate-700/70 flex items-center justify-center text-cyan-200 shrink-0">
+            <i class="fa-solid fa-box-archive"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-sm text-white">Arxivlangan chatlar</h4>
+              <span id="archived-count-badge" class="px-2 py-0.5 rounded-full bg-slate-700 text-[10px] font-bold text-cyan-200">0</span>
+            </div>
+            <p id="archived-preview-text" class="text-xs text-slate-400 truncate">Arxivlangan suhbatlarni ko'rish</p>
+          </div>
+        </div>
+
+        <!-- Real Chats List -->
+        <div id="chat-list-container" class="flex-1 overflow-y-auto p-2.5 space-y-1 pb-24">
+          <!-- Populated dynamically from real rooms -->
+        </div>
+
+        <!-- Floating Action Button (+ New Group / Channel / Chat like 629.jpg) -->
+        <button onclick="openNewChatModal()" class="liquid-btn w-13 h-13 rounded-full flex items-center justify-center text-slate-950 text-xl font-bold shadow-2xl absolute bottom-20 right-4 z-20 cursor-pointer" title="Yangi guruh, kanal yoki chat">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+      </div>
+
+      <!-- =====================================================
+           TAB VIEW 2: KONTAKTLAR (Registered Friends)
+           ===================================================== -->
+      <div id="view-contacts" class="hidden flex-1 overflow-y-auto p-3.5 space-y-3 pb-24">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm text-cyan-200">ZenoGram Do'stlari</h3>
+          <button onclick="openNewChatModal()" class="text-xs text-cyan-300 font-semibold hover:underline cursor-pointer">+ ID orqali qo'shish</button>
+        </div>
+        <div id="contacts-list-container" class="space-y-2"></div>
+      </div>
+
+      <!-- =====================================================
+           TAB VIEW 3: SOZLAMALAR (Settings + Passcode Lock 644.jpg + Themes + Privacy)
+           ===================================================== -->
+      <div id="view-settings" class="hidden flex-1 overflow-y-auto p-3.5 space-y-3.5 pb-24">
+        <!-- Premium Banner -->
+        <div onclick="openPremiumModal()" class="liquid-glass rounded-2xl p-3.5 flex items-center justify-between cursor-pointer border border-amber-400/30 bg-gradient-to-r from-amber-500/15 via-cyan-500/10 to-transparent">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">⭐</span>
+            <div>
+              <h4 class="font-bold text-sm text-white">ZenoGram Premium</h4>
+              <p id="settings-premium-sub" class="text-[11px] text-amber-200/85">Imkoniyatlar va cheklovlarni ko'rish</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-xs text-amber-300"></i>
+        </div>
+
+        <!-- Maxfiylik va Xavfsizlik (Passcode Lock 644.jpg + Last Seen) -->
+        <div class="liquid-glass rounded-2xl p-3.5 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-cyan-300">Maxfiylik va Xavfsizlik</h4>
+
+          <!-- Passcode Lock Button (Opens 644.jpg style screen) -->
+          <div onclick="openPasscodeSettingsModal()" class="flex items-center justify-between py-1.5 cursor-pointer hover:bg-white/5 rounded-xl px-2 -mx-2">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center"><i class="fa-solid fa-key text-xs"></i></div>
+              <div>
+                <p class="text-xs font-bold text-white">Kirish kodi (Passcode Lock)</p>
+                <p class="text-[10px] text-slate-400">4 xonali PIN kod bilan ilovani qulflash</p>
+              </div>
+            </div>
+            <span id="passcode-status-badge" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 text-slate-300">O'chiq</span>
+          </div>
+
+          <!-- Hide Last Seen Privacy Toggle -->
+          <div class="flex items-center justify-between py-1.5 px-2 -mx-2 border-t border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center"><i class="fa-solid fa-eye-slash text-xs"></i></div>
+              <div>
+                <p class="text-xs font-bold text-white">Oxirgi kirgan vaqtni yashirish</p>
+                <p class="text-[10px] text-slate-400">"Yaqinda onlayn edi" ko'rinishida bo'ladi</p>
+              </div>
+            </div>
+            <input id="toggle-hide-lastseen" type="checkbox" onchange="togglePrivacySetting('hideLastSeen', this.checked)" class="w-4 h-4 accent-cyan-400 cursor-pointer" />
+          </div>
+
+          <!-- Notification Sound Toggle -->
+          <div class="flex items-center justify-between py-1.5 px-2 -mx-2 border-t border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center"><i class="fa-solid fa-bell text-xs"></i></div>
+              <div>
+                <p class="text-xs font-bold text-white">Qishki bildirishnoma ovozi</p>
+                <p class="text-[10px] text-slate-400">Yangi xabar kelganda mayin ovozli signal</p>
+              </div>
+            </div>
+            <input id="toggle-sound" type="checkbox" checked onchange="togglePrivacySetting('soundEnabled', this.checked)" class="w-4 h-4 accent-cyan-400 cursor-pointer" />
+          </div>
+        </div>
+
+        <!-- Qishki Chat Fonlari (Winter Wallpapers) -->
+        <div class="liquid-glass rounded-2xl p-3.5 space-y-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-cyan-300">Qishki Liquid Glass Mavzular</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <button onclick="setWinterTheme('theme-snow-night')" class="p-2.5 rounded-xl bg-[#0c3547]/80 border border-cyan-300/30 text-left font-semibold text-white hover:border-cyan-300 cursor-pointer">❄️ Qorli tun</button>
+            <button onclick="setWinterTheme('theme-aurora')" class="p-2.5 rounded-xl bg-[#064e3b]/80 border border-emerald-300/30 text-left font-semibold text-white hover:border-emerald-300 cursor-pointer">🌌 Shimol yog'dusi</button>
+            <button onclick="setWinterTheme('theme-ice-palace')" class="p-2.5 rounded-xl bg-[#164e63]/80 border border-sky-300/30 text-left font-semibold text-white hover:border-sky-300 cursor-pointer">🧊 Muz saroyi</button>
+            <button onclick="setWinterTheme('theme-deep-ocean')" class="p-2.5 rounded-xl bg-[#1d4ed8]/60 border border-blue-300/30 text-left font-semibold text-white hover:border-blue-300 cursor-pointer">🌊 Chuqur okean</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================
+           TAB VIEW 4: PROFIL (Account Info, Bio, Saved Accounts Switcher)
+           ===================================================== -->
+      <div id="view-profile" class="hidden flex-1 overflow-y-auto p-4 space-y-4 pb-24">
+        <div class="liquid-glass rounded-3xl p-4 text-center relative">
+          <div id="profile-tab-avatar" class="w-20 h-20 rounded-3xl bg-gradient-to-br from-cyan-400 to-teal-600 mx-auto flex items-center justify-center text-3xl font-extrabold text-white mb-2.5">
+            Z
+          </div>
+          <div class="flex items-center justify-center gap-1.5">
+            <h3 id="profile-tab-name" class="font-bold text-lg text-white">Ism</h3>
+            <span id="profile-tab-badges" class="flex items-center gap-1"></span>
+          </div>
+          <p id="profile-tab-meta" class="text-xs text-cyan-300 font-mono mt-0.5">ID: --- • @---</p>
+        </div>
+
+        <div class="liquid-glass rounded-2xl p-4 space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-cyan-200 mb-1">Ismingiz</label>
+            <input id="edit-profile-name" type="text" maxlength="32" class="w-full bg-slate-950/50 border border-cyan-300/25 rounded-xl px-3.5 py-2 text-xs text-white outline-none" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label class="font-semibold text-cyan-200">Bio</label>
+              <span id="bio-char-count" class="font-mono text-slate-400">0 / 200</span>
+            </div>
+            <textarea id="edit-profile-bio" rows="2" oninput="updateBioCounter()" class="w-full bg-slate-950/50 border border-cyan-300/25 rounded-xl px-3.5 py-2 text-xs text-white outline-none resize-none"></textarea>
+          </div>
+          <button onclick="saveProfileChanges()" class="liquid-btn w-full py-2.5 rounded-xl text-slate-950 font-bold text-xs cursor-pointer">
+            O'zgarishlarni saqlash
+          </button>
+        </div>
+
+        <!-- Account Switcher / Add Account -->
+        <div class="liquid-glass rounded-2xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-cyan-200">Saqlangan akkauntlar</span>
+            <button onclick="switchToAddAccount()" class="text-xs text-cyan-300 font-semibold hover:underline cursor-pointer">+ Akkaunt qo'shish</button>
+          </div>
+          <div id="profile-saved-accounts-list" class="space-y-1.5"></div>
+          <button onclick="logoutAccount()" class="w-full mt-2 py-2.5 rounded-xl bg-rose-500/20 border border-rose-400/30 text-rose-200 font-bold text-xs hover:bg-rose-500/30 cursor-pointer">
+            Akkauntdan chiqish
+          </button>
+        </div>
+      </div>
+
+      <!-- FLOATING BOTTOM NAVIGATION BAR (Exact 629.jpg layout: Chatlar, Kontaktlar, Sozlamalar, Profil) -->
+      <nav class="absolute bottom-2.5 left-3 right-3 liquid-glass-strong rounded-3xl px-2 py-1.5 flex items-center justify-around border border-cyan-300/25 shadow-2xl z-30">
+        <button onclick="switchBottomTab('chats')" id="nav-chats" class="flex-1 py-1.5 rounded-2xl bg-cyan-500/20 text-cyan-300 flex flex-col items-center gap-0.5 transition cursor-pointer">
+          <div class="relative">
+            <i class="fa-solid fa-comments text-base"></i>
+            <span id="nav-unread-badge" class="hidden absolute -top-1.5 -right-3 px-1.5 py-0.2 rounded-full bg-cyan-400 text-slate-950 text-[9px] font-extrabold">1</span>
+          </div>
+          <span class="text-[10px] font-bold">Chatlar</span>
+        </button>
+
+        <button onclick="switchBottomTab('contacts')" id="nav-contacts" class="flex-1 py-1.5 rounded-2xl text-slate-300 hover:text-white flex flex-col items-center gap-0.5 transition cursor-pointer">
+          <i class="fa-solid fa-address-book text-base"></i>
+          <span class="text-[10px] font-semibold">Kontaktlar</span>
+        </button>
+
+        <button onclick="switchBottomTab('settings')" id="nav-settings" class="flex-1 py-1.5 rounded-2xl text-slate-300 hover:text-white flex flex-col items-center gap-0.5 transition cursor-pointer">
+          <i class="fa-solid fa-gear text-base"></i>
+          <span class="text-[10px] font-semibold">Sozlamalar</span>
+        </button>
+
+        <button onclick="switchBottomTab('profile')" id="nav-profile" class="flex-1 py-1.5 rounded-2xl text-slate-300 hover:text-white flex flex-col items-center gap-0.5 transition cursor-pointer">
+          <div id="nav-profile-dot" class="w-5 h-5 rounded-full bg-gradient-to-tr from-teal-400 to-cyan-500 text-[10px] font-bold text-slate-950 flex items-center justify-center">Z</div>
+          <span class="text-[10px] font-semibold">Profil</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- =====================================================
+         RIGHT PANEL: ACTIVE CHAT / GROUP / CHANNEL ROOM
+         ===================================================== -->
+    <main id="chat-room-panel" class="hidden md:flex flex-1 h-full flex-col relative bg-slate-950/20">
+      <div id="empty-chat-state" class="h-full w-full flex flex-col items-center justify-center p-6 text-center">
+        <div class="liquid-glass px-6 py-5 rounded-3xl max-w-sm">
+          <div class="text-4xl mb-3">❄️</div>
+          <h3 class="font-bold text-lg text-white mb-1">ZenoGram X Qishki Chat</h3>
+          <p class="text-xs text-slate-300/80 leading-relaxed">
+            Chap tarafdan chat, guruh yoki kanalni tanlang. Yangi guruh yoki kanal yaratish uchun <span class="text-cyan-300 font-bold">+</span> tugmasini bosing.
+          </p>
+        </div>
+      </div>
+
+      <div id="active-chat-container" class="hidden h-full w-full flex flex-col">
+        <!-- Room Header -->
+        <header class="px-3.5 py-2.5 liquid-glass-strong border-b border-cyan-300/20 flex items-center justify-between z-20">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <button onclick="closeMobileChat()" class="md:hidden w-9 h-9 rounded-xl liquid-glass flex items-center justify-center text-cyan-200 cursor-pointer">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div id="active-chat-avatar" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-500 to-teal-400 flex items-center justify-center font-bold text-white shrink-0">
+              ❄️
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <h2 id="active-chat-title" class="font-bold text-sm sm:text-base text-white truncate">Chat Nomi</h2>
+                <span id="active-chat-badges" class="flex items-center gap-1 shrink-0"></span>
+              </div>
+              <p id="active-chat-subtitle" class="text-[11px] text-cyan-300/80 truncate">onlayn • jonli</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button id="btn-archive-chat" onclick="toggleArchiveActiveChat()" class="liquid-glass w-9 h-9 rounded-xl flex items-center justify-center text-cyan-200 hover:bg-white/10 transition cursor-pointer" title="Arxivlash / Chiqarish">
+              <i class="fa-solid fa-box-archive text-xs"></i>
+            </button>
+            <button id="btn-pin-chat" onclick="togglePinActiveChat()" class="liquid-glass w-9 h-9 rounded-xl flex items-center justify-center text-cyan-200 hover:bg-white/10 transition cursor-pointer" title="Chatni qadash">
+              <i class="fa-solid fa-thumbtack text-xs"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Pinned Message Banner inside Chat -->
+        <div id="room-pinned-msg-bar" class="hidden px-4 py-2 liquid-glass border-b border-cyan-300/20 flex items-center justify-between gap-2 text-xs z-10">
+          <div class="flex items-center gap-2 min-w-0">
+            <i class="fa-solid fa-thumbtack text-cyan-300 shrink-0"></i>
+            <div class="min-w-0">
+              <p class="text-[10px] font-bold text-cyan-300">Qadalgan xabar</p>
+              <p id="room-pinned-msg-text" class="text-xs text-white truncate"></p>
+            </div>
+          </div>
+          <button onclick="unpinRoomMessage()" class="text-slate-400 hover:text-white text-xs px-1.5 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Messages List -->
+        <div id="messages-list" class="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-3"></div>
+
+        <!-- Message Context Menu (Reply, Edit, Pin, Forward, Delete, React) -->
+        <div id="msg-action-bar" class="hidden mx-3 mb-2 liquid-glass-strong rounded-2xl p-2.5 flex flex-col gap-2 z-30 border border-cyan-300/35">
+          <div class="flex items-center justify-between border-b border-white/10 pb-2">
+            <div class="flex items-center gap-1.5">
+              <button onclick="applyReaction('👍')" class="hover:scale-125 transition text-lg px-1 cursor-pointer">👍</button>
+              <button onclick="applyReaction('❤️')" class="hover:scale-125 transition text-lg px-1 cursor-pointer">❤️</button>
+              <button onclick="applyReaction('😂')" class="hover:scale-125 transition text-lg px-1 cursor-pointer">😂</button>
+              <button onclick="applyReaction('🔥')" class="hover:scale-125 transition text-lg px-1 cursor-pointer">🔥</button>
+              <button onclick="applyReaction('❄️', true)" class="hover:scale-125 transition text-lg px-1 relative cursor-pointer">❄️<span class="text-[8px] absolute -top-1 -right-0.5 text-amber-300">⭐</span></button>
+              <button onclick="applyReaction('👑', true)" class="hover:scale-125 transition text-lg px-1 relative cursor-pointer">👑<span class="text-[8px] absolute -top-1 -right-0.5 text-amber-300">⭐</span></button>
+            </div>
+            <button onclick="closeMsgActionBar()" class="text-slate-400 hover:text-white px-2 text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap text-xs font-semibold">
+            <button onclick="startReplyToSelected()" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-cyan-200 cursor-pointer"><i class="fa-solid fa-reply mr-1"></i>Javob</button>
+            <button onclick="pinSelectedMessage()" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-amber-200 cursor-pointer"><i class="fa-solid fa-thumbtack mr-1"></i>Qadash</button>
+            <button onclick="forwardSelectedMessage()" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-teal-200 cursor-pointer"><i class="fa-solid fa-share mr-1"></i>Uzatish</button>
+            <button id="btn-edit-msg" onclick="startEditSelected()" class="hidden px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sky-200 cursor-pointer"><i class="fa-solid fa-pen mr-1"></i>Tahrirlash</button>
+            <button id="btn-delete-msg" onclick="deleteSelectedMessage()" class="hidden px-2.5 py-1.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 cursor-pointer"><i class="fa-solid fa-trash mr-1"></i>O'chirish</button>
+          </div>
+        </div>
+
+        <!-- Winter Stickers & Emoji Drawer (Feature #3) -->
+        <div id="sticker-drawer" class="hidden mx-3 mb-2 liquid-glass-strong rounded-2xl p-3 z-30 border border-cyan-300/25">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-cyan-200">❄️ Qishki Jonli Stikerlar</span>
+            <button onclick="toggleStickerDrawer()" class="text-slate-400 hover:text-white text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="grid grid-cols-5 sm:grid-cols-8 gap-2 text-center">
+            <button onclick="sendSticker('⛄', false)" class="p-2 rounded-xl hover:bg-white/10 text-2xl cursor-pointer">⛄</button>
+            <button onclick="sendSticker('❄️', false)" class="p-2 rounded-xl hover:bg-white/10 text-2xl cursor-pointer">❄️</button>
+            <button onclick="sendSticker('🐧', false)" class="p-2 rounded-xl hover:bg-white/10 text-2xl cursor-pointer">🐧</button>
+            <button onclick="sendSticker('🧣', false)" class="p-2 rounded-xl hover:bg-white/10 text-2xl cursor-pointer">🧣</button>
+            <button onclick="sendSticker('☕', false)" class="p-2 rounded-xl hover:bg-white/10 text-2xl cursor-pointer">☕</button>
+            <button onclick="sendSticker('👑', true)" class="p-2 rounded-xl hover:bg-white/10 text-2xl relative cursor-pointer" title="Premium Stiker">👑<span class="text-[8px] absolute top-1 right-1 text-amber-300">⭐</span></button>
+            <button onclick="sendSticker('💎', true)" class="p-2 rounded-xl hover:bg-white/10 text-2xl relative cursor-pointer" title="Premium Stiker">💎<span class="text-[8px] absolute top-1 right-1 text-amber-300">⭐</span></button>
+            <button onclick="sendSticker('🚀', true)" class="p-2 rounded-xl hover:bg-white/10 text-2xl relative cursor-pointer" title="Premium Stiker">🚀<span class="text-[8px] absolute top-1 right-1 text-amber-300">⭐</span></button>
+          </div>
+        </div>
+
+        <!-- Reply / Edit Preview Banner -->
+        <div id="reply-edit-banner" class="hidden mx-3 mb-1 px-3 py-2 rounded-xl liquid-glass border-l-4 border-cyan-400 flex items-center justify-between text-xs">
+          <div class="min-w-0">
+            <p id="reply-edit-label" class="font-bold text-cyan-300 text-[11px]">Javob berilmoqda:</p>
+            <p id="reply-edit-text" class="text-slate-200 truncate"></p>
+          </div>
+          <button onclick="cancelReplyOrEdit()" class="text-slate-400 hover:text-white px-2 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Channel Read-Only Notice (Shown if user is not channel admin) -->
+        <div id="channel-readonly-bar" class="hidden p-3.5 liquid-glass-strong border-t border-cyan-300/20 text-center text-xs text-cyan-200">
+          <i class="fa-solid fa-bullhorn mr-1.5 text-amber-300"></i> Bu kanalga faqat kanal egasi post joylay oladi.
+        </div>
+
+        <!-- Message Input Bar (Fixed & Fully Interactive) -->
+        <div id="chat-input-wrapper" class="shrink-0 z-30 p-3 sm:p-4 liquid-glass-strong border-t border-cyan-300/30 shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
+          <div class="flex items-center justify-between px-2 mb-1.5 text-[10px]">
+            <span id="typing-indicator-text" class="text-cyan-300/90 font-medium"><i class="fa-regular fa-snowflake mr-1"></i>Liquid Glass shifrlangan</span>
+            <span id="char-limit-display" class="font-mono text-cyan-200/70">0 / 1000</span>
+          </div>
+
+          <div class="flex items-end gap-2">
+            <!-- Photo Upload Button -->
+            <label class="liquid-glass w-11 h-11 rounded-2xl flex items-center justify-center text-cyan-300 hover:bg-cyan-400/20 shrink-0 cursor-pointer shadow" title="Rasm yuborish">
+              <i class="fa-solid fa-image text-sm"></i>
+              <input id="photo-upload-input" type="file" accept="image/*" onchange="handlePhotoUpload(event)" class="hidden" />
+            </label>
+
+            <!-- Sticker Button -->
+            <button onclick="toggleStickerDrawer()" class="liquid-glass w-11 h-11 rounded-2xl flex items-center justify-center text-amber-300 hover:bg-amber-400/20 shrink-0 cursor-pointer shadow" title="Stikerlar">
+              <i class="fa-regular fa-face-laugh-beam text-sm"></i>
+            </button>
+
+            <!-- Textarea -->
+            <div class="flex-1 liquid-glass rounded-2xl px-3.5 py-2.5 flex items-center border border-cyan-300/30 shadow-inner">
+              <textarea id="message-input" rows="1" oninput="handleMessageInput(this)" onkeydown="handleMessageKeydown(event)"
+                placeholder="Xabar yozing..."
+                class="w-full bg-transparent text-sm text-white placeholder-slate-400 outline-none resize-none max-h-28 leading-relaxed"></textarea>
+            </div>
+
+            <!-- Real Microphone Voice Recorder Button -->
+            <button id="btn-record-voice" onclick="toggleVoiceRecording()" class="liquid-glass w-11 h-11 rounded-2xl flex items-center justify-center text-cyan-300 hover:bg-cyan-400/20 shrink-0 cursor-pointer shadow" title="Ovozli xabar yozish">
+              <i class="fa-solid fa-microphone text-sm"></i>
+            </button>
+
+            <!-- Send Button -->
+            <button onclick="sendMessage()" class="liquid-btn w-11 h-11 rounded-2xl flex items-center justify-center text-slate-950 font-bold shrink-0 shadow-lg cursor-pointer">
+              <i class="fa-solid fa-paper-plane text-sm"></i>
+            </button>
+
+            <!-- Poll Button -->
+            <button onclick="openCreatePollModal()" class="liquid-glass w-11 h-11 rounded-2xl flex items-center justify-center text-cyan-300 hover:bg-cyan-400/20 shrink-0 cursor-pointer shadow" title="So'rovnoma yaratish">
+              <i class="fa-solid fa-square-poll-vertical text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- =========================================================
+       MODAL: PASSCODE LOCK SETUP (Exact 644.jpg screen)
+       ========================================================= -->
+  <div id="modal-owner" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="liquid-glass-strong w-full max-w-2xl rounded-3xl overflow-hidden flex flex-col max-h-[90dvh]">
+      <div class="px-5 py-4 border-b border-amber-400/25 bg-gradient-to-r from-amber-500/20 via-cyan-500/10 to-transparent flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-amber-400/20 border border-amber-300/40 flex items-center justify-center text-amber-300">
+            <i class="fa-solid fa-crown text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-white">Ilova Egasi Boshqaruv Markazi</h3>
+            <p id="owner-stats-summary" class="text-[11px] text-amber-200/85">Foydalanuvchilar, Premium, Galichka, Ban va Rassilka</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-owner')" class="w-9 h-9 rounded-xl liquid-glass flex items-center justify-center text-slate-300 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Global Broadcast (Rassilka) -->
+      <div class="p-4 border-b border-cyan-300/15 bg-slate-900/50 space-y-2">
+        <label class="block text-xs font-bold text-amber-300">📢 Umumiy E'lon (Rassilka — Barcha foydalanuvchilarga):</label>
+        <div class="flex gap-2">
+          <input id="owner-broadcast-input" type="text" placeholder="Barcha foydalanuvchilarga muhim xabar yozing..."
+            class="flex-1 bg-slate-950/65 border border-amber-400/30 rounded-xl px-3.5 py-2 text-xs text-white outline-none" />
+          <button onclick="sendOwnerBroadcast()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-bold text-xs cursor-pointer">
+            Yuborish
+          </button>
+        </div>
+      </div>
+
+      <!-- Users List with Premium, Verified & Ban Toggles -->
+      <div class="p-4 overflow-y-auto flex-1 space-y-2.5" id="owner-users-list"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: TELEGRAM PREMIUM COMPARISON
+       ========================================================= -->
+  <div id="modal-premium" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="liquid-glass-strong w-full max-w-lg rounded-3xl overflow-hidden flex flex-col max-h-[88dvh]">
+      <div class="px-5 py-4 border-b border-cyan-300/20 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-amber-500/20 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">⭐</span>
+          <div>
+            <h3 class="font-bold text-base text-white">ZenoGram Premium</h3>
+            <p class="text-[11px] text-cyan-200">Haqiqiy Telegram Premium imkoniyatlari</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-premium')" class="w-9 h-9 rounded-xl liquid-glass flex items-center justify-center text-slate-300 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-3.5 text-xs">
+        <div id="premium-status-banner" class="liquid-glass rounded-2xl p-4 flex items-center justify-between"></div>
+
+        <div class="liquid-glass rounded-2xl p-3.5">
+          <p class="font-bold text-white mb-2">Ism yonidagi Emoji Status (Premium):</p>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="setCustomEmojiStatus('❄️')" class="w-9 h-9 rounded-xl liquid-glass hover:bg-cyan-400/20 text-base cursor-pointer">❄️</button>
+            <button onclick="setCustomEmojiStatus('⭐')" class="w-9 h-9 rounded-xl liquid-glass hover:bg-cyan-400/20 text-base cursor-pointer">⭐</button>
+            <button onclick="setCustomEmojiStatus('👑')" class="w-9 h-9 rounded-xl liquid-glass hover:bg-cyan-400/20 text-base cursor-pointer">👑</button>
+            <button onclick="setCustomEmojiStatus('💎')" class="w-9 h-9 rounded-xl liquid-glass hover:bg-cyan-400/20 text-base cursor-pointer">💎</button>
+            <button onclick="setCustomEmojiStatus('⚡')" class="w-9 h-9 rounded-xl liquid-glass hover:bg-cyan-400/20 text-base cursor-pointer">⚡</button>
+            <button onclick="setCustomEmojiStatus('🔥')" class="w-9 h-9 rounded-xl liquid-glass hover:bg-cyan-400/20 text-base cursor-pointer">🔥</button>
+          </div>
+        </div>
+
+        <div class="liquid-glass rounded-xl p-3 flex justify-between"><span>Xabar uzunligi: Oddiy 1,000 • Premium 4,096</span><span class="text-cyan-300 font-bold">4x</span></div>
+        <div class="liquid-glass rounded-xl p-3 flex justify-between"><span>Qadalgan chatlar: Oddiy 3 • Premium 10</span><span class="text-cyan-300 font-bold">10 ta</span></div>
+        <div class="liquid-glass rounded-xl p-3 flex justify-between"><span>Kunlik Hikoyalar (Stories): Oddiy 2 • Premium Cheksiz</span><span class="text-amber-300 font-bold">∞</span></div>
+        <div class="liquid-glass rounded-xl p-3 flex justify-between"><span>Ovozli xabarni matnga aylantirish (→A)</span><span class="text-amber-300 font-bold">⭐</span></div>
+        <div class="liquid-glass rounded-xl p-3 flex justify-between"><span>Eksklyuziv Qishki Stikerlar va Reaksiyalar</span><span class="text-amber-300 font-bold">⭐</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-Screen Photo Lightbox -->
+  <div id="modal-photo-lightbox" onclick="closeModal('modal-photo-lightbox')" class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-pointer">
+    <img id="lightbox-img" class="max-w-full max-h-[90dvh] rounded-2xl shadow-2xl" />
+  </div>
+
+  <!-- =========================================================
+       FIREBASE & FULL APPLICATION LOGIC
+       ========================================================= -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import {
+      getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc, addDoc,
+      collection, onSnapshot
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    let db = null;
+    let auth = null;
+    let fbUser = null;
+    let appId = typeof __app_id !== 'undefined' ? __app_id : 'zenogram-x-winter';
+
+    let currentUser = null;
+    let allUsersMap = {};
+    let allRoomsMap = {};
+    let allStoriesList = [];
+    let activeRoomId = null;
+    let activeMessages = [];
+    let unsubscribeMessages = null;
+    let chatFilter = 'all';
+    let selectedMsgForAction = null;
+    let replyToMsgObj = null;
+    let editingMsgObj = null;
+    let pendingStoryImage = null;
+
+    // Passcode Lock State (644.jpg)
+    let passcodeMode = 'unlock'; // 'unlock' | 'setup' | 'confirm'
+    let passcodeBuffer = '';
+    let tempNewPasscode = '';
+
+    // Voice Recording State
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+    let recordStartTime = 0;
+
+    window.activeAuthField = 'auth-id';
+
+    const OWNER_ID = '00001';
+    const OWNER_PIN = '2026';
+    const GLOBAL_ROOM_ID = 'global_winter_hall';
+    const STORAGE_KEY_ACTIVE = 'zenogram_active_user_id';
+    const STORAGE_KEY_SAVED = 'zenogram_saved_accounts';
+    const STORAGE_KEY_PASSCODE = 'zenogram_passcode_pin';
+    const STORAGE_KEY_THEME = 'zenogram_winter_theme';
+
+    // Restore Saved Theme
+    const savedTheme = localStorage.getItem(STORAGE_KEY_THEME);
+    if (savedTheme) document.body.className = `${savedTheme} select-none sm:select-auto`;
+
+    // Web Audio API Winter Notification Chime (Feature #5)
+    function playWinterChime() {
+      if (currentUser && currentUser.soundEnabled === false) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1318.5, ctx.currentTime + 0.14);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.36);
+      } catch (e) {}
+    }
+
+    // =========================================================
+    // PERSISTENT ACCOUNT STORAGE (Remembers User Forever!)
+    // =========================================================
+    function getSavedAccounts() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY_SAVED) || '[]');
+      } catch { return []; }
+    }
+
+    function saveAccountToDevice(userObj) {
+      if (!userObj || !userObj.id) return;
+      localStorage.setItem(STORAGE_KEY_ACTIVE, userObj.id);
+      const list = getSavedAccounts().filter(u => u.id !== userObj.id);
+      list.unshift({
+        id: userObj.id,
+        username: userObj.username,
+        name: userObj.name,
+        isOwner: !!userObj.isOwner,
+        isPremium: !!userObj.isPremium
+      });
+      localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(list.slice(0, 6)));
+      renderSavedAccountsUI();
+    }
+
+    function renderSavedAccountsUI() {
+      const saved = getSavedAccounts();
+      const welcomeBox = document.getElementById('saved-accounts-welcome-box');
+      const welcomeList = document.getElementById('saved-accounts-welcome-list');
+      const authBox = document.getElementById('saved-accounts-auth-box');
+      const authList = document.getElementById('saved-accounts-auth-list');
+      const profileList = document.getElementById('profile-saved-accounts-list');
+
+      if (saved.length > 0) {
+        welcomeBox?.classList.remove('hidden');
+        authBox?.classList.remove('hidden');
+
+        if (welcomeList) {
+          welcomeList.innerHTML = saved.map(acc => `
+            <button onclick="quickLoginSavedAccount('${acc.id}')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-white/10 hover:bg-cyan-400/20 transition text-left cursor-pointer">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-cyan-500 text-slate-950 font-bold text-xs flex items-center justify-center">${acc.name.charAt(0).toUpperCase()}</span>
+                <div>
+                  <p class="text-xs font-bold text-white">${escapeHTML(acc.name)} ${acc.isOwner ? '👑' : ''}</p>
+                  <p class="text-[10px] text-cyan-300 font-mono">${escapeHTML(acc.username)} • ID: ${acc.id}</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-bold text-cyan-300">Kirish →</span>
+            </button>
+          `).join('');
+        }
+
+        if (authList) {
+          authList.innerHTML = saved.map(acc => `
+            <button onclick="quickLoginSavedAccount('${acc.id}')" class="px-3 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-300/30 text-xs font-semibold text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+              <span>${escapeHTML(acc.name)}</span>
+              <span class="text-[10px] text-cyan-300 font-mono">(${acc.id})</span>
+            </button>
+          `).join('');
+        }
+      } else {
+        welcomeBox?.classList.add('hidden');
+        authBox?.classList.add('hidden');
+      }
+
+      if (profileList) {
+        profileList.innerHTML = saved.map(acc => `
+          <div onclick="quickLoginSavedAccount('${acc.id}')" class="flex items-center justify-between px-3 py-2 rounded-xl ${currentUser && currentUser.id === acc.id ? 'bg-cyan-500/20 border border-cyan-300/30' : 'bg-white/5 hover:bg-white/10'} cursor-pointer">
+            <div class="flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-teal-500 text-slate-950 font-bold text-xs flex items-center justify-center">${acc.name.charAt(0).toUpperCase()}</span>
+              <div>
+                <p class="text-xs font-bold text-white">${escapeHTML(acc.name)}</p>
+                <p class="text-[10px] text-cyan-300 font-mono">${escapeHTML(acc.username)} • ID: ${acc.id}</p>
+              </div>
+            </div>
+            ${currentUser && currentUser.id === acc.id ? '<span class="text-[10px] text-emerald-300 font-bold">Faol</span>' : '<span class="text-[10px] text-cyan-300">O\'tish</span>'}
+          </div>
+        `).join('');
+      }
+    }
+
+    window.quickLoginSavedAccount = async function(savedId) {
+      if (!db || !fbUser) await initFirebase();
+      const userRef = doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', savedId);
+      const snap = await getDoc(userRef);
+      if (snap.exists()) {
+        const u = snap.data();
+        if (u.isBanned && !u.isOwner) {
+          showToast("🚫 Sizning hisobingiz Ilova Egasi tomonidan bloklangan.", "error");
+          return;
+        }
+        currentUser = u;
+        saveAccountToDevice(currentUser);
+        await ensureSavedMessagesRoom(currentUser.id);
+        updateCurrentUserUI();
+        goToScreen('screen-app');
+        openRoom(GLOBAL_ROOM_ID);
+        checkPasscodeOnStartup();
+      } else {
+        document.getElementById('auth-id').value = savedId;
+        goToScreen('screen-auth');
+      }
+    };
+
+    // =========================================================
+    // FIREBASE INIT & REAL-TIME LISTENERS
+    // =========================================================
+    async function initFirebase() {
+      try {
+        if (typeof __firebase_config === 'undefined') return false;
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          const cred = await signInWithCustomToken(auth, __initial_auth_token);
+          fbUser = cred.user;
+        } else {
+          const cred = await signInAnonymously(auth);
+          fbUser = cred.user;
+        }
+
+        await ensureDefaultData();
+        listenToUsers();
+        listenToRooms();
+        listenToStories();
+        return true;
+      } catch (err) {
+        console.error("Firebase init error:", err);
+        return false;
+      }
+    }
+
+    async function ensureDefaultData() {
+      if (!db || !fbUser) return;
+      const ownerRef = doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', OWNER_ID);
+      const ownerSnap = await getDoc(ownerRef);
+      if (!ownerSnap.exists()) {
+        await setDoc(ownerRef, {
+          id: OWNER_ID,
+          username: '@owner',
+          name: 'ZenoGram Egasi',
+          bio: 'ZenoGram X asoschisi ❄️👑',
+          isPremium: true,
+          isVerified: true,
+          isOwner: true,
+          emojiStatus: '👑',
+          pinnedChats: [GLOBAL_ROOM_ID],
+          archivedChats: [],
+          online: true,
+          updatedAt: Date.now()
+        });
+      }
+
+      const globalRoomRef = doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', GLOBAL_ROOM_ID);
+      const globalSnap = await getDoc(globalRoomRef);
+      if (!globalSnap.exists()) {
+        await setDoc(globalRoomRef, {
+          id: GLOBAL_ROOM_ID,
+          type: 'group',
+          title: '❄️ ZenoGram Umumiy Chat',
+          subtitle: 'Barcha do\'stlar uchun jonli qishki muloqot',
+          lastMessage: 'ZenoGram X qishki chatiga xush kelibsiz! ❄️',
+          lastTime: Date.now(),
+          members: ['all']
+        });
+      }
+    }
+
+    async function ensureSavedMessagesRoom(uid) {
+      if (!db || !uid) return;
+      const savedId = `saved_${uid}`;
+      const ref = doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', savedId);
+      const snap = await getDoc(ref);
+      if (!snap.exists()) {
+        await setDoc(ref, {
+          id: savedId,
+          type: 'private',
+          isSavedMessages: true,
+          title: '🔖 Saqlangan xabarlar',
+          subtitle: 'Shaxsiy bulutli xotira',
+          members: [uid],
+          lastMessage: 'Muhim xabar va rasmlarni shu yerga saqlang',
+          lastTime: Date.now() - 1000
+        });
+      }
+    }
+
+    function listenToUsers() {
+      if (!db || !fbUser) return;
+      onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'zg_users'), (snap) => {
+        const map = {};
+        snap.forEach(d => { map[d.id] = d.data(); });
+        allUsersMap = map;
+
+        if (currentUser && allUsersMap[currentUser.id]) {
+          const fresh = allUsersMap[currentUser.id];
+          if (fresh.isBanned && !fresh.isOwner) {
+            showToast("🚫 Sizning hisobingiz bloklandi!", "error");
+            logoutAccount();
+            return;
+          }
+          const gotPremium = !currentUser.isPremium && fresh.isPremium;
+          const gotVerified = !currentUser.isVerified && fresh.isVerified;
+          currentUser = { ...currentUser, ...fresh };
+          saveAccountToDevice(currentUser);
+          updateCurrentUserUI();
+
+          if (gotPremium) showToast("🎉 Ilova Egasi sizga ZenoGram Premium (⭐) sovg'a qildi!", "premium");
+          if (gotVerified) showToast("☑️ Sizga Rasmiy Galichka berildi!", "success");
+        }
+
+        renderChatList();
+        renderContactsList();
+        renderOwnerUsersList();
+      });
+    }
+
+    function listenToRooms() {
+      if (!db || !fbUser) return;
+      onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'zg_rooms'), (snap) => {
+        const map = {};
+        snap.forEach(d => { map[d.id] = d.data(); });
+        allRoomsMap = map;
+        renderChatList();
+        if (activeRoomId && allRoomsMap[activeRoomId]) updateActiveChatHeader();
+      });
+    }
+
+    function listenToStories() {
+      if (!db || !fbUser) return;
+      onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'zg_stories'), (snap) => {
+        const now = Date.now();
+        const list = [];
+        snap.forEach(d => {
+          const s = { docId: d.id, ...d.data() };
+          if (now - (s.createdAt || 0) < 24 * 60 * 60 * 1000) list.push(s);
+        });
+        list.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        allStoriesList = list;
+        renderStoriesBar();
+      });
+    }
+
+    // =========================================================
+    // PASSCODE LOCK ENGINE (644.jpg)
+    // =========================================================
+    function checkPasscodeOnStartup() {
+      const savedPin = localStorage.getItem(STORAGE_KEY_PASSCODE);
+      const topLockBtn = document.getElementById('top-lock-btn');
+      const statusBadge = document.getElementById('passcode-status-badge');
+      const disableBtn = document.getElementById('btn-disable-passcode');
+
+      if (savedPin) {
+        topLockBtn?.classList.remove('hidden');
+        if (statusBadge) {
+          statusBadge.textContent = 'Yoqilgan';
+          statusBadge.className = 'text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-400/20 text-emerald-300';
+        }
+        disableBtn?.classList.remove('hidden');
+      } else {
+        topLockBtn?.classList.add('hidden');
+        if (statusBadge) {
+          statusBadge.textContent = "O'chiq";
+          statusBadge.className = 'text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 text-slate-300';
+        }
+        disableBtn?.classList.add('hidden');
+      }
+    }
+
+    window.openPasscodeSettingsModal = function() {
+      checkPasscodeOnStartup();
+      document.getElementById('modal-passcode-info').classList.remove('hidden');
+    };
+
+    window.startPasscodeSetup = function() {
+      closeModal('modal-passcode-info');
+      passcodeMode = 'setup';
+      passcodeBuffer = '';
+      tempNewPasscode = '';
+      document.getElementById('passcode-lock-subtitle').textContent = 'Yangi 4 xonali kirish kodini kiriting';
+      document.getElementById('passcode-cancel-btn').classList.remove('invisible');
+      updatePasscodeDots();
+      document.getElementById('screen-passcode-lock').classList.remove('hidden');
+    };
+
+    window.lockAppNow = function() {
+      if (!localStorage.getItem(STORAGE_KEY_PASSCODE)) return;
+      passcodeMode = 'unlock';
+      passcodeBuffer = '';
+      document.getElementById('passcode-lock-subtitle').textContent = '4 xonali kirish kodini kiriting';
+      document.getElementById('passcode-cancel-btn').classList.add('invisible');
+      updatePasscodeDots();
+      document.getElementById('screen-passcode-lock').classList.remove('hidden');
+    };
+
+    window.disablePasscode = function() {
+      localStorage.removeItem(STORAGE_KEY_PASSCODE);
+      checkPasscodeOnStartup();
+      closeModal('modal-passcode-info');
+      showToast("Kirish kodi o'chirildi.", "info");
+    };
+
+    window.enterPasscodeDigit = function(digit) {
+      if (passcodeBuffer.length >= 4) return;
+      passcodeBuffer += digit;
+      updatePasscodeDots();
+
+      if (passcodeBuffer.length === 4) {
+        setTimeout(() => {
+          if (passcodeMode === 'setup') {
+            tempNewPasscode = passcodeBuffer;
+            passcodeBuffer = '';
+            passcodeMode = 'confirm';
+            document.getElementById('passcode-lock-subtitle').textContent = 'Kodni tasdiqlash uchun qayta kiriting';
+            updatePasscodeDots();
+          } else if (passcodeMode === 'confirm') {
+            if (passcodeBuffer === tempNewPasscode) {
+              localStorage.setItem(STORAGE_KEY_PASSCODE, passcodeBuffer);
+              document.getElementById('screen-passcode-lock').classList.add('hidden');
+              checkPasscodeOnStartup();
+              showToast("🔐 4 xonali kirish kodi yoqildi! Yuqoridagi qulf orqali qulflashingiz mumkin.", "success");
+            } else {
+              passcodeBuffer = '';
+              passcodeMode = 'setup';
+              document.getElementById('passcode-lock-subtitle').textContent = 'Kodlar mos kelmadi, qaytadan kiriting';
+              updatePasscodeDots();
+            }
+          } else if (passcodeMode === 'unlock') {
+            const savedPin = localStorage.getItem(STORAGE_KEY_PASSCODE);
+            if (passcodeBuffer === savedPin) {
+              document.getElementById('screen-passcode-lock').classList.add('hidden');
+              passcodeBuffer = '';
+            } else {
+              passcodeBuffer = '';
+              document.getElementById('passcode-lock-subtitle').textContent = "❌ Noto'g'ri kod! Qaytadan urinib ko'ring";
+              updatePasscodeDots();
+            }
+          }
+        }, 140);
+      }
+    };
+
+    window.backspacePasscodeDigit = function() {
+      passcodeBuffer = passcodeBuffer.slice(0, -1);
+      updatePasscodeDots();
+    };
+
+    window.cancelPasscodeSetup = function() {
+      if (passcodeMode === 'unlock') return;
+      passcodeBuffer = '';
+      document.getElementById('screen-passcode-lock').classList.add('hidden');
+    };
+
+    function updatePasscodeDots() {
+      const dots = document.getElementById('passcode-dots').children;
+      for (let i = 0; i < 4; i++) {
+        dots[i].className = i < passcodeBuffer.length
+          ? 'w-4 h-4 rounded-full bg-cyan-400 border-2 border-cyan-300 shadow-[0_0_12px_#22d3ee] transition-all'
+          : 'w-4 h-4 rounded-full border-2 border-cyan-300/60 transition-all';
+      }
+    }
+
+    // =========================================================
+    // NAVIGATION & AUTH HANDLERS
+    // =========================================================
+    window.goToScreen = function(screenId) {
+      ['screen-welcome', 'screen-auth', 'screen-app'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(screenId).classList.remove('hidden');
+    };
+
+    window.switchBottomTab = function(tabName) {
+      const tabs = ['chats', 'contacts', 'settings', 'profile'];
+      tabs.forEach(t => {
+        const view = document.getElementById('view-' + t);
+        const btn = document.getElementById('nav-' + t);
+        if (t === tabName) {
+          view.classList.remove('hidden');
+          btn.className = 'flex-1 py-1.5 rounded-2xl bg-cyan-500/20 text-cyan-300 flex flex-col items-center gap-0.5 transition cursor-pointer';
+        } else {
+          view.classList.add('hidden');
+          btn.className = 'flex-1 py-1.5 rounded-2xl text-slate-300 hover:text-white flex flex-col items-center gap-0.5 transition cursor-pointer';
+        }
+      });
+
+      const titleMap = { chats: 'ZenoGram', contacts: 'Kontaktlar', settings: 'Sozlamalar', profile: 'Profil' };
+      document.getElementById('main-header-title').textContent = titleMap[tabName] || 'ZenoGram';
+      if (tabName === 'profile') renderSavedAccountsUI();
+    };
+
+    window.switchToAddAccount = function() {
+      document.getElementById('auth-name').value = '';
+      document.getElementById('auth-id').value = '';
+      document.getElementById('auth-username').value = '';
+      goToScreen('screen-auth');
+    };
+
+    const welcomeSlides = [
+      { title: '"Dunyodagi eng tezkor va xavfsiz qishki xabarchi."', desc: "Guruhlar, Kanallar, 24 soatlik Hikoyalar (Stories), ovozli xabarlar va ZenoGram Premium — barchasi bitta ilovada." },
+      { title: '❄️ Sovuq Shaffof Liquid Glass Dizayn', desc: "4 xil qishki mavzu, mayin yog'ayotgan qor va avtomatik eslab qolinadigan akkaunt tizimi." },
+      { title: '📢 Kanallar, Guruhlar va Stories', desc: "Shaxsiy kanal oching, ko'rishlar sonini kuzating va 24 soatlik hikoyalar joylang." },
+      { title: '🔐 4 xonali Kirish Kodi va Owner Panel', desc: "Ilovangizni PIN-kod bilan qulflang va do'stlaringizga Premium ⭐ hamda Galichka ☑️ sovg'a qiling." }
+    ];
+
+    window.setWelcomeSlide = function(idx) {
+      document.getElementById('welcome-slide-title').textContent = welcomeSlides[idx].title;
+      document.getElementById('welcome-slide-desc').textContent = welcomeSlides[idx].desc;
+      const dots = document.getElementById('welcome-dots').children;
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = i === idx ? 'w-6 h-2 rounded-full bg-cyan-400 transition-all' : 'w-2 h-2 rounded-full bg-white/30 transition-all';
+      }
+    };
+
+    window.openOwnerQuickModal = function() {
+      goToScreen('screen-auth');
+      fillOwnerCredentials();
+    };
+
+    window.fillOwnerCredentials = function() {
+      document.getElementById('auth-name').value = 'ZenoGram Egasi';
+      document.getElementById('auth-id').value = OWNER_ID;
+      document.getElementById('auth-username').value = '@owner';
+      document.getElementById('owner-pin-box').classList.remove('hidden');
+      document.getElementById('auth-owner-pin').value = OWNER_PIN;
+      showToast("Ilova Egasi ma'lumotlari to'ldirildi. 'Davom etish' tugmasini bosing.", "info");
+    };
+
+    window.generateRandomId = function() {
+      document.getElementById('auth-id').value = Math.floor(10000 + Math.random() * 89999).toString();
+      checkOwnerFieldVisibility();
+    };
+
+    window.pressKeypad = function(d) {
+      const f = document.getElementById(window.activeAuthField || 'auth-id');
+      if (f) { f.value = (f.value || '') + d; checkOwnerFieldVisibility(); }
+    };
+
+    window.backspaceKeypad = function() {
+      const f = document.getElementById(window.activeAuthField || 'auth-id');
+      if (f) { f.value = (f.value || '').slice(0, -1); checkOwnerFieldVisibility(); }
+    };
+
+    function checkOwnerFieldVisibility() {
+      const idVal = document.getElementById('auth-id').value.trim();
+      const userVal = document.getElementById('auth-username').value.trim().toLowerCase();
+      document.getElementById('owner-pin-box').classList.toggle('hidden', !(idVal === OWNER_ID || userVal === '@owner' || userVal === '@admin'));
+    }
+
+    document.getElementById('auth-id').addEventListener('input', checkOwnerFieldVisibility);
+    document.getElementById('auth-username').addEventListener('input', checkOwnerFieldVisibility);
+
+    window.handleLoginOrRegister = async function() {
+      if (!db || !fbUser) await initFirebase();
+
+      let name = document.getElementById('auth-name').value.trim();
+      let id = document.getElementById('auth-id').value.trim().replace(/\D/g, '');
+      let username = document.getElementById('auth-username').value.trim().toLowerCase();
+
+      if (!id) id = Math.floor(10000 + Math.random() * 89999).toString();
+      if (!username) username = '@user' + id;
+      else if (!username.startsWith('@')) username = '@' + username.replace(/[^a-z0-9_]/g, '');
+      if (!name) name = username.replace('@', '').toUpperCase();
+
+      const isTryingOwner = (id === OWNER_ID || username === '@owner' || username === '@admin');
+      if (isTryingOwner) {
+        const pin = document.getElementById('auth-owner-pin').value.trim();
+        if (pin !== OWNER_PIN) {
+          document.getElementById('owner-pin-box').classList.remove('hidden');
+          showToast("Ilova Egasi uchun maxfiy PIN kodni (2026) kiriting!", "error");
+          return;
+        }
+        id = OWNER_ID;
+      }
+
+      const btn = document.getElementById('auth-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-snowflake fa-spin"></i> Kirilmoqda...';
+
+      try {
+        const userRef = doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', id);
+        const snap = await getDoc(userRef);
+
+        if (snap.exists()) {
+          const existing = snap.data();
+          if (existing.isBanned && !isTryingOwner) {
+            showToast("🚫 Sizning hisobingiz bloklangan!", "error");
+            return;
+          }
+          currentUser = {
+            ...existing,
+            name: name || existing.name,
+            online: true,
+            isOwner: isTryingOwner ? true : (existing.isOwner || false),
+            isPremium: isTryingOwner ? true : (existing.isPremium || false),
+            isVerified: isTryingOwner ? true : (existing.isVerified || false)
+          };
+          await updateDoc(userRef, {
+            name: currentUser.name,
+            online: true,
+            isOwner: currentUser.isOwner,
+            isPremium: currentUser.isPremium,
+            isVerified: currentUser.isVerified
+          });
+        } else {
+          const taken = Object.values(allUsersMap).find(u => u.username === username && u.id !== id);
+          if (taken) {
+            showToast(`"${username}" band! Boshqa @username tanlang.`, "error");
+            return;
+          }
+          currentUser = {
+            id, username, name,
+            bio: isTryingOwner ? 'ZenoGram X Egasi 👑' : 'ZenoGram X foydalanuvchisi ❄️',
+            isPremium: isTryingOwner,
+            isVerified: isTryingOwner,
+            isOwner: isTryingOwner,
+            emojiStatus: isTryingOwner ? '👑' : '',
+            pinnedChats: [GLOBAL_ROOM_ID],
+            archivedChats: [],
+            hideLastSeen: false,
+            soundEnabled: true,
+            online: true,
+            createdAt: Date.now()
+          };
+          await setDoc(userRef, currentUser);
+        }
+
+        allUsersMap[currentUser.id] = currentUser;
+        saveAccountToDevice(currentUser);
+        await ensureSavedMessagesRoom(currentUser.id);
+        updateCurrentUserUI();
+        checkPasscodeOnStartup();
+        goToScreen('screen-app');
+        openRoom(GLOBAL_ROOM_ID);
+        showToast(`Xush kelibsiz, ${currentUser.name}! Hisobingiz eslab qolindi ❄️`, "success");
+      } catch (e) {
+        console.error(e);
+        showToast("Kirishda xatolik yuz berdi.", "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Davom etish</span><i class="fa-solid fa-arrow-right"></i>';
+      }
+    };
+
+    window.logoutAccount = function() {
+      localStorage.removeItem(STORAGE_KEY_ACTIVE);
+      currentUser = null;
+      activeRoomId = null;
+      renderSavedAccountsUI();
+      goToScreen('screen-welcome');
+    };
+
+    // =========================================================
+    // UI UPDATES & BADGES
+    // =========================================================
+    function getUserBadgesHTML(user) {
+      if (!user) return '';
+      let html = '';
+      if (user.isVerified) {
+        html += `<span title="Rasmiy Galichka" class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-sky-400 text-slate-950 text-[9px] font-black"><i class="fa-solid fa-check"></i></span>`;
+      }
+      if (user.isPremium) {
+        html += `<span title="ZenoGram Premium" class="text-xs leading-none">${user.emojiStatus || '⭐'}</span>`;
+      }
+      if (user.isOwner) {
+        html += `<span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/30 font-bold uppercase">Ega</span>`;
+      }
+      return html;
+    }
+
+    function updateCurrentUserUI() {
+      if (!currentUser) return;
+      document.getElementById('header-my-badges').innerHTML = getUserBadgesHTML(currentUser);
+      document.getElementById('top-bar-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+      document.getElementById('nav-profile-dot').textContent = currentUser.name.charAt(0).toUpperCase();
+      document.getElementById('my-story-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+
+      // Profile Tab UI
+      document.getElementById('profile-tab-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+      document.getElementById('profile-tab-avatar').classList.toggle('premium-aura', !!currentUser.isPremium);
+      document.getElementById('profile-tab-name').textContent = currentUser.name;
+      document.getElementById('profile-tab-badges').innerHTML = getUserBadgesHTML(currentUser);
+      document.getElementById('profile-tab-meta').textContent = `ID: ${currentUser.id} • ${currentUser.username}`;
+      document.getElementById('edit-profile-name').value = currentUser.name;
+      document.getElementById('edit-profile-bio').value = currentUser.bio || '';
+      updateBioCounter();
+
+      // Settings Toggles
+      document.getElementById('toggle-hide-lastseen').checked = !!currentUser.hideLastSeen;
+      document.getElementById('toggle-sound').checked = currentUser.soundEnabled !== false;
+      document.getElementById('settings-premium-sub').textContent = currentUser.isPremium ? '⭐ ZenoGram Premium Faol' : 'Oddiy hisob • Imkoniyatlarni ko\'rish';
+
+      // Owner Button
+      document.getElementById('btn-owner-panel').classList.toggle('hidden', !currentUser.isOwner);
+      handleMessageInput(document.getElementById('message-input'));
+    }
+
+    // =========================================================
+    // STORIES (24H HIKOYALAR - Feature #2)
+    // =========================================================
+    window.openCreateStoryModal = function() {
+      const myTodayStories = allStoriesList.filter(s => s.userId === currentUser.id);
+      if (!currentUser.isPremium && myTodayStories.length >= 2) {
+        showToast("⚠️ Oddiy hisobda kuniga maksimum 2 ta hikoya joylash mumkin! Premiumda cheksiz.", "error");
+        openPremiumModal();
+        return;
+      }
+      pendingStoryImage = null;
+      document.getElementById('story-text-input').value = '';
+      document.getElementById('story-photo-status').textContent = 'Rasm tanlanmagan';
+      document.getElementById('modal-create-story').classList.remove('hidden');
+    };
+
+    window.handleStoryPhotoSelect = function(e) {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      compressImageFile(file, 640, (dataUrl) => {
+        pendingStoryImage = dataUrl;
+        document.getElementById('story-photo-status').textContent = '✅ Rasm tayyor';
+      });
+    };
+
+    window.publishStory = async function() {
+      const text = document.getElementById('story-text-input').value.trim();
+      if (!text && !pendingStoryImage) {
+        showToast("Matn yozing yoki rasm tanlang!", "error");
+        return;
+      }
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_stories'), {
+        userId: currentUser.id,
+        userName: currentUser.name,
+        isPremium: !!currentUser.isPremium,
+        isVerified: !!currentUser.isVerified,
+        emojiStatus: currentUser.emojiStatus || '',
+        text,
+        image: pendingStoryImage || '',
+        views: [currentUser.id],
+        createdAt: Date.now()
+      });
+      closeModal('modal-create-story');
+      showToast("❄️ Hikoyangiz 24 soatga joylandi!", "success");
+    };
+
+    function renderStoriesBar() {
+      const container = document.getElementById('stories-bar-list');
+      if (!container) return;
+      container.innerHTML = allStoriesList.map(s => {
+        const ringClass = s.isPremium ? 'story-ring-premium' : 'story-ring-free';
+        return `
+          <button onclick="viewStory('${s.docId}')" class="flex flex-col items-center gap-1 shrink-0 cursor-pointer">
+            <div class="w-13 h-13 rounded-full ${ringClass} flex items-center justify-center">
+              <div class="w-11 h-11 rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-sm overflow-hidden">
+                ${s.image ? `<img src="${s.image}" class="w-full h-full object-cover" />` : escapeHTML(s.userName.charAt(0).toUpperCase())}
+              </div>
+            </div>
+            <span class="text-[10px] text-slate-200 max-w-[56px] truncate">${escapeHTML(s.userName)}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    window.viewStory = async function(docId) {
+      const story = allStoriesList.find(s => s.docId === docId);
+      if (!story) return;
+
+      document.getElementById('story-viewer-avatar').textContent = story.userName.charAt(0).toUpperCase();
+      document.getElementById('story-viewer-name').textContent = story.userName;
+      document.getElementById('story-viewer-badges').innerHTML = getUserBadgesHTML(story);
+      document.getElementById('story-viewer-time').textContent = new Date(story.createdAt).toLocaleTimeString('uz-UZ', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('story-viewer-text').textContent = story.text || '';
+
+      const imgEl = document.getElementById('story-viewer-img');
+      if (story.image) {
+        imgEl.src = story.image;
+        imgEl.classList.remove('hidden');
+      } else {
+        imgEl.classList.add('hidden');
+      }
+
+      const views = Array.isArray(story.views) ? story.views : [];
+      document.getElementById('story-views-count').textContent = views.length;
+      document.getElementById('modal-view-story').classList.remove('hidden');
+
+      if (!views.includes(currentUser.id) && db) {
+        const ref = doc(db, 'artifacts', appId, 'public', 'data', 'zg_stories', docId);
+        await updateDoc(ref, { views: [...views, currentUser.id] });
+      }
+    };
+
+    // =========================================================
+    // GROUPS, CHANNELS & CHAT LIST (Feature #1)
+    // =========================================================
+    window.toggleSearchBar = function() {
+      const w = document.getElementById('search-bar-wrapper');
+      w.classList.toggle('hidden');
+      if (!w.classList.contains('hidden')) document.getElementById('chat-search-input').focus();
+    };
+
+    window.clearSearch = function() {
+      document.getElementById('chat-search-input').value = '';
+      renderChatList();
+    };
+
+    window.setChatFilter = function(f) {
+      chatFilter = f;
+      ['all', 'private', 'groups', 'channels', 'archived'].forEach(t => {
+        const el = document.getElementById('tab-' + t);
+        if (!el) return;
+        el.className = t === f
+          ? 'px-3 py-1 rounded-xl bg-cyan-500/25 text-cyan-200 border border-cyan-400/30 whitespace-nowrap cursor-pointer'
+          : 'px-3 py-1 rounded-xl text-slate-300 hover:bg-white/5 whitespace-nowrap cursor-pointer';
+      });
+      renderChatList();
+    };
+
+    window.renderChatList = function() {
+      if (!currentUser) return;
+      const query = (document.getElementById('chat-search-input')?.value || '').trim().toLowerCase();
+      const container = document.getElementById('chat-list-container');
+      const globalBox = document.getElementById('global-search-results');
+      const globalList = document.getElementById('global-users-list');
+
+      if (query.length > 0) {
+        const foundUsers = Object.values(allUsersMap).filter(u =>
+          u.id !== currentUser.id && (u.username.toLowerCase().includes(query) || u.id.includes(query) || u.name.toLowerCase().includes(query))
+        );
+        const foundChannels = Object.values(allRoomsMap).filter(r =>
+          (r.type === 'channel' || r.type === 'secret') && ((r.title || '').toLowerCase().includes(query) || (r.channelUsername || '').toLowerCase().includes(query))
+        );
+
+        if (foundUsers.length > 0 || foundChannels.length > 0) {
+          globalBox.classList.remove('hidden');
+          globalList.innerHTML = [
+            ...foundUsers.map(u => `
+              <button onclick="openDirectChat('${u.id}')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-white/10 text-left cursor-pointer">
+                <span class="text-xs font-bold text-white">${escapeHTML(u.name)} <span class="text-cyan-300 font-mono text-[10px]">(${u.username})</span></span>
+                <span class="text-[10px] text-cyan-300 font-semibold">Yozish</span>
+              </button>
+            `),
+            ...foundChannels.map(c => `
+              <button onclick="openRoom('${c.id}')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl hover:bg-white/10 text-left cursor-pointer">
+                <span class="text-xs font-bold text-amber-200">${c.type === 'secret' ? '🔒' : '📢'} ${escapeHTML(c.title)}</span>
+                <span class="text-[10px] text-amber-300 font-semibold">Kirish</span>
+              </button>
+            `)
+          ].join('');
+        } else {
+          globalBox.classList.add('hidden');
+        }
+      } else {
+        globalBox.classList.add('hidden');
+      }
+
+      const pinnedList = currentUser.pinnedChats || [];
+      const archivedList = currentUser.archivedChats || [];
+
+      const archivedRow = document.getElementById('archived-banner-row');
+      if (archivedList.length > 0 && chatFilter !== 'archived') {
+        archivedRow.classList.remove('hidden');
+        document.getElementById('archived-count-badge').textContent = archivedList.length;
+      } else {
+        archivedRow.classList.add('hidden');
+      }
+
+      let rooms = Object.values(allRoomsMap).filter(room => {
+        if (room.type === 'group' || room.type === 'channel' || room.type === 'secret') return true;
+        if (room.type === 'private' && Array.isArray(room.members)) return room.members.includes(currentUser.id);
+        return false;
+      });
+
+      if (chatFilter === 'archived') {
+        rooms = rooms.filter(r => archivedList.includes(r.id));
+      } else {
+        rooms = rooms.filter(r => !archivedList.includes(r.id));
+        if (chatFilter === 'private') rooms = rooms.filter(r => r.type === 'private' || r.type === 'secret');
+        if (chatFilter === 'groups') rooms = rooms.filter(r => r.type === 'group');
+        if (chatFilter === 'channels') rooms = rooms.filter(r => r.type === 'channel');
+      }
+
+      if (query) {
+        rooms = rooms.filter(r => getRoomDisplayInfo(r).title.toLowerCase().includes(query));
+      }
+
+      rooms.sort((a, b) => {
+        const aPin = pinnedList.includes(a.id) ? 1 : 0;
+        const bPin = pinnedList.includes(b.id) ? 1 : 0;
+        if (aPin !== bPin) return bPin - aPin;
+        return (b.lastTime || 0) - (a.lastTime || 0);
+      });
+
+      if (rooms.length === 0) {
+        container.innerHTML = `<div class="text-center py-10 text-xs text-slate-400">Bu bo'limda hozircha chatlar yo'q.</div>`;
+        return;
+      }
+
+      container.innerHTML = rooms.map(room => {
+        const info = getRoomDisplayInfo(room);
+        const isSelected = room.id === activeRoomId;
+        const isPinned = pinnedList.includes(room.id);
+        const timeStr = room.lastTime ? new Date(room.lastTime).toLocaleTimeString('uz-UZ', { hour: '2-digit', minute: '2-digit' }) : '';
+
+        return `
+          <div onclick="openRoom('${room.id}')"
+            class="flex items-center gap-3 p-2.5 rounded-2xl cursor-pointer transition ${isSelected ? 'liquid-glass border-cyan-300/45 bg-cyan-400/15' : 'hover:bg-white/5 border border-transparent'}">
+            <div class="w-12 h-12 rounded-full ${info.isPremium ? 'premium-aura' : ''} bg-gradient-to-br from-cyan-500/80 to-teal-700/80 flex items-center justify-center text-white font-bold text-base shrink-0">
+              ${info.avatarText}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-1">
+                <div class="flex items-center gap-1 min-w-0">
+                  <h4 class="font-bold text-sm text-white truncate">${escapeHTML(info.title)}</h4>
+                  ${info.badges}
+                </div>
+                <div class="flex items-center gap-1 shrink-0 text-[10px] text-slate-400">
+                  ${isPinned ? '<i class="fa-solid fa-thumbtack text-cyan-300 rotate-45"></i>' : ''}
+                  <span>${timeStr}</span>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300/75 truncate mt-0.5">${escapeHTML(room.lastMessage || 'Yangi suhbat')}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    function renderContactsList() {
+      const container = document.getElementById('contacts-list-container');
+      if (!container || !currentUser) return;
+      const friends = Object.values(allUsersMap).filter(u => u.id !== currentUser.id);
+      if (friends.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-6">Hozircha boshqa do'stlar ro'yxatdan o'tmagan.</p>`;
+        return;
+      }
+      container.innerHTML = friends.map(u => `
+        <div onclick="openDirectChat('${u.id}')" class="liquid-glass rounded-2xl p-3 flex items-center justify-between cursor-pointer hover:bg-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full ${u.isPremium ? 'premium-aura' : ''} bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center font-bold text-white">
+              ${u.name.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span class="font-bold text-sm text-white">${escapeHTML(u.name)}</span>
+                ${getUserBadgesHTML(u)}
+              </div>
+              <p class="text-[11px] text-cyan-300 font-mono">${escapeHTML(u.username)} • ${u.hideLastSeen ? 'yaqinda onlayn edi' : 'onlayn'}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-paper-plane text-cyan-300 text-xs"></i>
+        </div>
+      `).join('');
+    }
+
+    function getRoomDisplayInfo(room) {
+      if (room.isSavedMessages) {
+        return { title: '🔖 Saqlangan xabarlar', subtitle: 'Shaxsiy bulutli xotira', avatarText: '🔖', badges: '', isPremium: false };
+      }
+      if (room.type === 'secret') {
+        return { title: room.title || 'Maxfiy chat', subtitle: '🔒 End-to-End shifrlangan', avatarText: '🔒', badges: '<span class="text-[9px] px-1 py-0.5 rounded bg-emerald-400/20 text-emerald-300 font-bold">MAXFIY</span>', isPremium: false };
+      }
+      if (room.type === 'channel') {
+        return {
+          title: room.title,
+          subtitle: `${room.channelUsername || '@kanal'} • Kanal`,
+          avatarText: '📢',
+          badges: '<span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 font-bold">KANAL</span>',
+          isPremium: false
+        };
+      }
+      if (room.type === 'group') {
+        return { title: room.title, subtitle: room.subtitle || 'Qishki guruh', avatarText: '❄️', badges: '', isPremium: false };
+      }
+      const otherId = (room.members || []).find(id => id !== currentUser.id) || currentUser.id;
+      const otherUser = allUsersMap[otherId];
+      if (!otherUser) return { title: `Foydalanuvchi #${otherId}`, subtitle: `ID: ${otherId}`, avatarText: '👤', badges: '', isPremium: false };
+      const statusText = otherUser.hideLastSeen ? 'yaqinda onlayn edi' : 'onlayn';
+      return {
+        title: otherUser.name,
+        subtitle: `${otherUser.username} • ${statusText}`,
+        avatarText: otherUser.name.charAt(0).toUpperCase(),
+        badges: getUserBadgesHTML(otherUser),
+        isPremium: !!otherUser.isPremium
+      };
+    }
+
+    window.openDirectChat = async function(targetUserId) {
+      if (!currentUser || !db) return;
+      if (targetUserId === currentUser.id) {
+        openRoom(`saved_${currentUser.id}`);
+        return;
+      }
+      const sortedIds = [currentUser.id, targetUserId].sort();
+      const roomId = `dm_${sortedIds[0]}_${sortedIds[1]}`;
+      if (!allRoomsMap[roomId]) {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', roomId), {
+          id: roomId, type: 'private', members: sortedIds, lastMessage: 'Shaxsiy suhbat boshlandi ❄️', lastTime: Date.now()
+        });
+      }
+      clearSearch();
+      openRoom(roomId);
+    };
+
+    window.createSecretChat = async function() {
+      const val = document.getElementById('secret-chat-friend-input').value.trim().toLowerCase();
+      if (!val) { showToast("Do'st ID yoki @username kiriting!", "error"); return; }
+      const found = Object.values(allUsersMap).find(u => u.id === val || u.username.toLowerCase() === val || u.username.toLowerCase() === '@' + val);
+      if (!found) { showToast("Foydalanuvchi topilmadi.", "error"); return; }
+      if (found.id === currentUser.id) { showToast("O'zingiz bilan maxfiy chat ochib bo'lmaydi.", "error"); return; }
+
+      const sortedIds = [currentUser.id, found.id].sort();
+      const secretRoomId = `secret_${sortedIds[0]}_${sortedIds[1]}`;
+      if (!allRoomsMap[secretRoomId]) {
+        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', secretRoomId), {
+          id: secretRoomId, type: 'secret', title: `Maxfiy: ${found.name}`, members: sortedIds,
+          lastMessage: '🔒 Maxfiy chat boshlandi (End-to-End)', lastTime: Date.now()
+        });
+      }
+      closeModal('modal-new-chat');
+      openRoom(secretRoomId);
+      showToast("🔒 Maxfiy chat ochildi!", "success");
+    };
+
+    window.openCreatePollModal = function() {
+      document.getElementById('poll-question-input').value = '';
+      document.getElementById('poll-opt1-input').value = '';
+      document.getElementById('poll-opt2-input').value = '';
+      document.getElementById('poll-opt3-input').value = '';
+      document.getElementById('modal-create-poll').classList.remove('hidden');
+    };
+
+    window.publishPoll = async function() {
+      const question = document.getElementById('poll-question-input').value.trim();
+      const opt1 = document.getElementById('poll-opt1-input').value.trim();
+      const opt2 = document.getElementById('poll-opt2-input').value.trim();
+      const opt3 = document.getElementById('poll-opt3-input').value.trim();
+
+      if (!question || !opt1 || !opt2) {
+        showToast("Savol va kamida 2 ta javob kiriting!", "error");
+        return;
+      }
+
+      const options = [
+        { text: opt1, votes: [] },
+        { text: opt2, votes: [] },
+        ...(opt3 ? [{ text: opt3, votes: [] }] : [])
+      ];
+
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId), {
+        senderId: currentUser.id,
+        senderName: currentUser.name,
+        senderPremium: !!currentUser.isPremium,
+        senderVerified: !!currentUser.isVerified,
+        senderEmoji: currentUser.emojiStatus || '',
+        type: 'poll',
+        pollQuestion: question,
+        pollOptions: options,
+        text: `📊 So'rovnoma: ${question}`,
+        reactions: {},
+        createdAt: Date.now()
+      });
+
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), {
+        lastMessage: `${currentUser.name}: 📊 ${question}`,
+        lastTime: Date.now()
+      });
+
+      closeModal('modal-create-poll');
+      showToast("📊 So'rovnoma yuborildi!", "success");
+    };
+
+    window.votePollOption = async function(docId, optIdx) {
+      const msg = activeMessages.find(m => m.docId === docId);
+      if (!msg || !msg.pollOptions) return;
+      const options = JSON.parse(JSON.stringify(msg.pollOptions));
+
+      options.forEach(opt => {
+        opt.votes = (opt.votes || []).filter(id => id !== currentUser.id);
+      });
+      options[optIdx].votes.push(currentUser.id);
+
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId, docId), {
+        pollOptions: options
+      });
+    };
+
+    window.createNewGroup = async function() {
+      const title = document.getElementById('new-group-title').value.trim();
+      if (!title) { showToast("Guruh nomini kiriting!", "error"); return; }
+      const roomId = 'grp_' + Date.now();
+      await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', roomId), {
+        id: roomId, type: 'group', title: '❄️ ' + title, subtitle: `${currentUser.name} yaratgan guruh`,
+        ownerId: currentUser.id, lastMessage: 'Guruh yaratildi!', lastTime: Date.now(), members: ['all']
+      });
+      document.getElementById('new-group-title').value = '';
+      closeModal('modal-new-chat');
+      openRoom(roomId);
+      showToast("Yangi guruh yaratildi!", "success");
+    };
+
+    window.createNewChannel = async function() {
+      const title = document.getElementById('new-channel-title').value.trim();
+      let uname = document.getElementById('new-channel-username').value.trim().toLowerCase();
+      if (!title) { showToast("Kanal nomini kiriting!", "error"); return; }
+      if (uname && !uname.startsWith('@')) uname = '@' + uname;
+      const roomId = 'chn_' + Date.now();
+      await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', roomId), {
+        id: roomId, type: 'channel', title, channelUsername: uname || '@zenochannel',
+        ownerId: currentUser.id, lastMessage: 'Kanal ochildi 📢', lastTime: Date.now(), members: ['all']
+      });
+      document.getElementById('new-channel-title').value = '';
+      document.getElementById('new-channel-username').value = '';
+      closeModal('modal-new-chat');
+      openRoom(roomId);
+      showToast("📢 Yangi kanal yaratildi!", "success");
+    };
+
+    // =========================================================
+    // ACTIVE ROOM, MESSAGES, VOICE & PHOTO UPLOAD
+    // =========================================================
+    window.openRoom = function(roomId) {
+      activeRoomId = roomId;
+      replyToMsgObj = null;
+      editingMsgObj = null;
+      document.getElementById('reply-edit-banner').classList.add('hidden');
+      document.getElementById('empty-chat-state').classList.add('hidden');
+      document.getElementById('active-chat-container').classList.remove('hidden');
+
+      if (window.innerWidth < 768) {
+        document.getElementById('sidebar-panel').classList.add('hidden');
+        const cr = document.getElementById('chat-room-panel');
+        cr.classList.remove('hidden');
+        cr.classList.add('flex');
+      }
+
+      updateActiveChatHeader();
+      renderChatList();
+      subscribeToRoomMessages(roomId);
+    };
+
+    window.closeMobileChat = function() {
+      document.getElementById('sidebar-panel').classList.remove('hidden');
+      const cr = document.getElementById('chat-room-panel');
+      cr.classList.add('hidden');
+      cr.classList.remove('flex');
+    };
+
+    function updateActiveChatHeader() {
+      const room = allRoomsMap[activeRoomId];
+      if (!room) return;
+      const info = getRoomDisplayInfo(room);
+      document.getElementById('active-chat-title').textContent = info.title;
+      document.getElementById('active-chat-badges').innerHTML = info.badges;
+      document.getElementById('active-chat-subtitle').textContent = info.subtitle;
+      document.getElementById('active-chat-avatar').textContent = info.avatarText;
+
+      // Channel posting permission check
+      const isReadOnlyChannel = room.type === 'channel' && room.ownerId !== currentUser.id && !currentUser.isOwner;
+      document.getElementById('channel-readonly-bar').classList.toggle('hidden', !isReadOnlyChannel);
+      document.getElementById('chat-input-wrapper').classList.toggle('hidden', isReadOnlyChannel);
+
+      // Pinned message bar inside room
+      const pinBar = document.getElementById('room-pinned-msg-bar');
+      if (room.pinnedMessageText) {
+        pinBar.classList.remove('hidden');
+        document.getElementById('room-pinned-msg-text').textContent = room.pinnedMessageText;
+      } else {
+        pinBar.classList.add('hidden');
+      }
+    }
+
+    function subscribeToRoomMessages(roomId) {
+      if (unsubscribeMessages) unsubscribeMessages();
+      if (!db || !fbUser) return;
+      let initialLoad = true;
+      unsubscribeMessages = onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + roomId), (snap) => {
+        const msgs = [];
+        snap.forEach(d => msgs.push({ docId: d.id, ...d.data() }));
+        msgs.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+
+        if (!initialLoad && msgs.length > activeMessages.length) {
+          const last = msgs[msgs.length - 1];
+          if (last && last.senderId !== currentUser.id) playWinterChime();
+        }
+        initialLoad = false;
+        activeMessages = msgs;
+        renderMessages();
+      });
+    }
+
+    window.togglePinActiveChat = async function() {
+      if (!currentUser || !activeRoomId) return;
+      const maxPins = currentUser.isPremium ? 10 : 3;
+      let pinned = [...(currentUser.pinnedChats || [])];
+      if (pinned.includes(activeRoomId)) {
+        pinned = pinned.filter(id => id !== activeRoomId);
+        showToast("Chat qadalganlardan olindi.", "info");
+      } else {
+        if (pinned.length >= maxPins) {
+          showToast(currentUser.isPremium ? "Maksimal 10 ta chat!" : "⚠️ Oddiy hisobda 3 ta chat qadash mumkin! Premiumda 10 ta.", "error");
+          if (!currentUser.isPremium) openPremiumModal();
+          return;
+        }
+        pinned.push(activeRoomId);
+        showToast("📌 Chat qadaldi!", "success");
+      }
+      currentUser.pinnedChats = pinned;
+      renderChatList();
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', currentUser.id), { pinnedChats: pinned });
+    };
+
+    window.toggleArchiveActiveChat = async function() {
+      if (!currentUser || !activeRoomId) return;
+      let archived = [...(currentUser.archivedChats || [])];
+      if (archived.includes(activeRoomId)) {
+        archived = archived.filter(id => id !== activeRoomId);
+        showToast("Chat arxivdan chiqarildi.", "info");
+      } else {
+        archived.push(activeRoomId);
+        showToast("📥 Chat arxivlandi.", "success");
+      }
+      currentUser.archivedChats = archived;
+      renderChatList();
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', currentUser.id), { archivedChats: archived });
+    };
+
+    window.handleMessageInput = function(el) {
+      if (!currentUser || !el) return;
+      const limit = currentUser.isPremium ? 4096 : 1000;
+      if (el.value.length > limit) {
+        el.value = el.value.slice(0, limit);
+        showToast(currentUser.isPremium ? "Maksimal 4096 belgi!" : "⚠️ Oddiy hisobda limit 1000 belgi! Premiumda 4096.", "error");
+      }
+      document.getElementById('char-limit-display').textContent = `${el.value.length} / ${limit}`;
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 110) + 'px';
+    };
+
+    window.handleMessageKeydown = function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    };
+
+    window.sendMessage = async function() {
+      if (!currentUser || !activeRoomId || !db) return;
+      const input = document.getElementById('message-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      handleMessageInput(input);
+
+      // Edit existing message mode
+      if (editingMsgObj) {
+        const msgRef = doc(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId, editingMsgObj.docId);
+        await updateDoc(msgRef, { text, edited: true });
+        cancelReplyOrEdit();
+        showToast("Xabar tahrirlandi", "success");
+        return;
+      }
+
+      const room = allRoomsMap[activeRoomId];
+      const payload = {
+        senderId: currentUser.id,
+        senderName: currentUser.name,
+        senderPremium: !!currentUser.isPremium,
+        senderVerified: !!currentUser.isVerified,
+        senderEmoji: currentUser.emojiStatus || '',
+        text,
+        type: 'text',
+        views: 1,
+        reactions: {},
+        createdAt: Date.now(),
+        ...(replyToMsgObj ? { replyTo: { name: replyToMsgObj.senderName, text: replyToMsgObj.text } } : {})
+      };
+
+      cancelReplyOrEdit();
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId), payload);
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), {
+        lastMessage: room?.type === 'channel' ? text : `${currentUser.name}: ${text}`,
+        lastTime: Date.now()
+      });
+    };
+
+    // Photo Sharing (Feature #3)
+    window.handlePhotoUpload = function(e) {
+      const file = e.target.files?.[0];
+      if (!file || !activeRoomId || !db) return;
+      compressImageFile(file, 720, async (dataUrl) => {
+        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId), {
+          senderId: currentUser.id,
+          senderName: currentUser.name,
+          senderPremium: !!currentUser.isPremium,
+          senderVerified: !!currentUser.isVerified,
+          senderEmoji: currentUser.emojiStatus || '',
+          text: '🖼️ Rasm',
+          imageData: dataUrl,
+          type: 'photo',
+          views: 1,
+          reactions: {},
+          createdAt: Date.now()
+        });
+        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), {
+          lastMessage: `${currentUser.name}: 🖼️ Rasm`,
+          lastTime: Date.now()
+        });
+      });
+      e.target.value = '';
+    };
+
+    function compressImageFile(file, maxDim, callback) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          callback(canvas.toDataURL('image/jpeg', 0.72));
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Real Microphone Recording with Fallback (Feature #3)
+    window.toggleVoiceRecording = async function() {
+      const btn = document.getElementById('btn-record-voice');
+      if (!isRecording) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+          mediaRecorder.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop());
+            const durationSec = Math.max(1, Math.round((Date.now() - recordStartTime) / 1000));
+            const blob = new Blob(audioChunks, { type: 'audio/webm' });
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+              await saveVoiceMessageToFirestore(reader.result, durationSec);
+            };
+            reader.readAsDataURL(blob);
+          };
+          mediaRecorder.start();
+          isRecording = true;
+          recordStartTime = Date.now();
+          btn.classList.add('bg-rose-500', 'text-white', 'animate-pulse');
+          showToast("🎙️ Ovoz yozilmoqda... To'xtatish uchun yana bosing.", "info");
+        } catch (err) {
+          // Fallback simulated voice note if iframe blocks microphone
+          await saveVoiceMessageToFirestore('', 4);
+        }
+      } else {
+        isRecording = false;
+        btn.classList.remove('bg-rose-500', 'text-white', 'animate-pulse');
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+      }
+    };
+
+    async function saveVoiceMessageToFirestore(audioDataUrl, durationSec) {
+      const transcripts = [
+        "Salom do'stlar! ZenoGram X qishki dizayni juda zo'r!",
+        "Bugun hammamiz shu guruhda yig'ilamizmi?",
+        "Qishki sovuqda ZenoGramda yozishishga nima yetsin ❄️"
+      ];
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId), {
+        senderId: currentUser.id,
+        senderName: currentUser.name,
+        senderPremium: !!currentUser.isPremium,
+        senderVerified: !!currentUser.isVerified,
+        senderEmoji: currentUser.emojiStatus || '',
+        text: `🎤 Ovozli xabar (0:0${durationSec})`,
+        audioData: audioDataUrl || '',
+        duration: durationSec,
+        transcript: transcripts[Math.floor(Math.random() * transcripts.length)],
+        type: 'voice',
+        views: 1,
+        reactions: {},
+        createdAt: Date.now()
+      });
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), {
+        lastMessage: `${currentUser.name}: 🎤 Ovozli xabar`,
+        lastTime: Date.now()
+      });
+    }
+
+    window.playVoiceAudio = function(docId) {
+      const msg = activeMessages.find(m => m.docId === docId);
+      if (msg && msg.audioData) {
+        const audio = new Audio(msg.audioData);
+        audio.play().catch(() => {});
+      } else {
+        showToast("🔊 Ovozli xabar ijro etilmoqda...", "info");
+      }
+    };
+
+    window.transcribeVoiceMessage = function(docId) {
+      if (!currentUser.isPremium) {
+        showToast("🔒 Ovozli xabarni matnga aylantirish faqat ZenoGram Premium uchun!", "error");
+        openPremiumModal();
+        return;
+      }
+      document.getElementById('transcript-' + docId)?.classList.toggle('hidden');
+    };
+
+    // Winter Stickers (Feature #3)
+    window.toggleStickerDrawer = function() {
+      document.getElementById('sticker-drawer').classList.toggle('hidden');
+    };
+
+    window.sendSticker = async function(emoji, isPremiumOnly) {
+      if (isPremiumOnly && !currentUser.isPremium) {
+        showToast("⭐ Bu stiker faqat ZenoGram Premium egalari uchun!", "error");
+        openPremiumModal();
+        return;
+      }
+      toggleStickerDrawer();
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId), {
+        senderId: currentUser.id,
+        senderName: currentUser.name,
+        senderPremium: !!currentUser.isPremium,
+        senderVerified: !!currentUser.isVerified,
+        senderEmoji: currentUser.emojiStatus || '',
+        text: emoji,
+        type: 'sticker',
+        views: 1,
+        reactions: {},
+        createdAt: Date.now()
+      });
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), {
+        lastMessage: `${currentUser.name}: ${emoji} Stiker`,
+        lastTime: Date.now()
+      });
+    };
+
+    // Render Messages
+    function renderMessages() {
+      const container = document.getElementById('messages-list');
+      const room = allRoomsMap[activeRoomId];
+      if (!container || !room) return;
+
+      container.innerHTML = activeMessages.map(msg => {
+        const isMine = msg.senderId === currentUser.id;
+        const liveSender = allUsersMap[msg.senderId] || { name: msg.senderName, isPremium: msg.senderPremium, isVerified: msg.senderVerified, emojiStatus: msg.senderEmoji };
+        const timeStr = msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString('uz-UZ', { hour: '2-digit', minute: '2-digit' }) : '';
+
+        const reactionsObj = msg.reactions || {};
+        const reactionChips = Object.entries(reactionsObj)
+          .filter(([, users]) => Array.isArray(users) && users.length > 0)
+          .map(([emoji, users]) => {
+            const iReacted = users.includes(currentUser.id);
+            return `<button onclick="toggleReactionDirect('${msg.docId}', '${emoji}')" class="px-2 py-0.5 rounded-full text-xs flex items-center gap-1 cursor-pointer ${iReacted ? 'bg-cyan-400/30 border border-cyan-300/60 text-white' : 'bg-white/10 text-slate-200'}">${emoji} <span class="text-[10px] font-bold">${users.length}</span></button>`;
+          }).join('');
+
+        if (msg.type === 'sticker') {
+          return `
+            <div onclick="openMsgActionBar('${msg.docId}')" class="flex flex-col ${isMine ? 'items-end' : 'items-start'} cursor-pointer">
+              ${!isMine ? `<span class="text-[11px] font-bold text-cyan-300 mb-0.5">${escapeHTML(liveSender.name)}</span>` : ''}
+              <div class="text-6xl py-1 sticker-anim select-none">${escapeHTML(msg.text)}</div>
+              <span class="text-[10px] text-slate-400">${timeStr}</span>
+              ${reactionChips ? `<div class="flex gap-1 mt-1">${reactionChips}</div>` : ''}
+            </div>
+          `;
+        }
+
+        if (msg.type === 'poll') {
+          const totalVotes = (msg.pollOptions || []).reduce((acc, opt) => acc + (opt.votes || []).length, 0);
+          const optionsHtml = (msg.pollOptions || []).map((opt, idx) => {
+            const vCount = (opt.votes || []).length;
+            const pct = totalVotes > 0 ? Math.round((vCount / totalVotes) * 100) : 0;
+            const iVoted = (opt.votes || []).includes(currentUser.id);
+            return `
+              <button onclick="votePollOption('${msg.docId}', ${idx})" class="w-full text-left p-2 rounded-xl border ${iVoted ? 'border-cyan-400 bg-cyan-500/25' : 'border-white/15 bg-slate-900/40'} relative overflow-hidden cursor-pointer transition">
+                <div class="absolute inset-y-0 left-0 bg-cyan-400/20 transition-all duration-300" style="width: ${pct}%"></div>
+                <div class="relative z-10 flex justify-between items-center text-xs">
+                  <span class="font-semibold text-white">${escapeHTML(opt.text)} ${iVoted ? '✅' : ''}</span>
+                  <span class="text-cyan-200 font-bold">${pct}% (${vCount})</span>
+                </div>
+              </button>
+            `;
+          }).join('');
+
+          return `
+            <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'}">
+              <div class="max-w-[90%] sm:max-w-[75%] rounded-2xl p-3.5 ${isMine ? 'msg-bubble-out rounded-br-sm' : 'msg-bubble-in rounded-bl-sm'} space-y-2.5">
+                <div class="flex items-center gap-1.5 border-b border-white/15 pb-2">
+                  <span class="text-base">📊</span>
+                  <div>
+                    <p class="text-xs font-bold text-cyan-300">So'rovnoma</p>
+                    <p class="text-sm font-extrabold text-white">${escapeHTML(msg.pollQuestion)}</p>
+                  </div>
+                </div>
+                <div class="space-y-1.5">${optionsHtml}</div>
+                <div class="flex justify-between text-[10px] text-slate-300 pt-1">
+                  <span>Jami ovozlar: ${totalVotes}</span>
+                  <span>${timeStr}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'}">
+            <div onclick="openMsgActionBar('${msg.docId}')" class="max-w-[85%] sm:max-w-[70%] rounded-2xl px-3.5 py-2.5 cursor-pointer ${isMine ? 'msg-bubble-out rounded-br-sm' : 'msg-bubble-in rounded-bl-sm'}">
+              ${!isMine ? `
+                <div class="flex items-center gap-1 mb-1">
+                  <span class="text-xs font-bold text-cyan-300">${escapeHTML(liveSender.name)}</span>
+                  ${getUserBadgesHTML(liveSender)}
+                </div>
+              ` : ''}
+
+              ${msg.forwardedFrom ? `<p class="text-[10px] italic text-cyan-200 mb-1"><i class="fa-solid fa-share mr-1"></i>Uzatilgan: ${escapeHTML(msg.forwardedFrom)}</p>` : ''}
+
+              ${msg.replyTo ? `
+                <div class="mb-1.5 pl-2 border-l-2 border-cyan-300 bg-black/20 rounded-r-lg py-1 pr-2 text-[11px]">
+                  <p class="font-bold text-cyan-200">${escapeHTML(msg.replyTo.name)}</p>
+                  <p class="text-slate-300 truncate">${escapeHTML(msg.replyTo.text)}</p>
+                </div>
+              ` : ''}
+
+              ${room.type === 'secret' ? `<p class="text-[10px] font-mono text-emerald-300 mb-1"><i class="fa-solid fa-lock mr-1"></i>End-to-End Shifrlangan</p>` : ''}
+
+              ${msg.type === 'photo' && msg.imageData ? `
+                <img src="${msg.imageData}" onclick="event.stopPropagation(); openPhotoLightbox('${msg.imageData}')" class="max-h-64 rounded-xl mb-1 object-cover cursor-zoom-in" />
+              ` : msg.type === 'voice' ? `
+                <div class="flex items-center gap-2.5 py-1">
+                  <button onclick="event.stopPropagation(); playVoiceAudio('${msg.docId}')" class="w-8 h-8 rounded-full bg-cyan-400/25 flex items-center justify-center text-cyan-200 cursor-pointer">
+                    <i class="fa-solid fa-play text-xs"></i>
+                  </button>
+                  <div class="flex-1">
+                    <div class="h-1.5 w-28 bg-white/20 rounded-full"><div class="h-full w-2/3 bg-cyan-300 rounded-full"></div></div>
+                    <span class="text-[10px] text-cyan-200/80">0:0${msg.duration || 4} • Ovozli xabar</span>
+                  </div>
+                  <button onclick="event.stopPropagation(); transcribeVoiceMessage('${msg.docId}')" class="px-2 py-1 rounded-lg bg-white/15 text-[10px] font-bold text-amber-200 cursor-pointer">→A</button>
+                </div>
+                <div id="transcript-${msg.docId}" class="hidden mt-1.5 pt-1.5 border-t border-white/15 text-xs italic text-cyan-100">"${escapeHTML(msg.transcript || '')}"</div>
+              ` : `
+                <p class="text-xs sm:text-sm text-white whitespace-pre-wrap break-words leading-relaxed">${escapeHTML(msg.text)}</p>
+              `}
+
+              <div class="flex items-center justify-end gap-1.5 mt-1 text-[10px] text-slate-300/75">
+                ${room.type === 'channel' ? `<span><i class="fa-solid fa-eye mr-0.5"></i>${(msg.views || 1) + Object.keys(allUsersMap).length}</span>` : ''}
+                ${msg.edited ? '<span>tahrirlangan</span>' : ''}
+                <span>${timeStr}</span>
+                ${isMine ? '<i class="fa-solid fa-check-double text-cyan-200"></i>' : ''}
+              </div>
+            </div>
+            ${reactionChips ? `<div class="flex items-center gap-1 mt-1 flex-wrap">${reactionChips}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+      container.scrollTop = container.scrollHeight;
+    }
+
+    window.openPhotoLightbox = function(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('modal-photo-lightbox').classList.remove('hidden');
+    };
+
+    // =========================================================
+    // MESSAGE ACTIONS: REPLY, EDIT, PIN, FORWARD, DELETE, REACT
+    // =========================================================
+    window.openMsgActionBar = function(docId) {
+      const msg = activeMessages.find(m => m.docId === docId);
+      if (!msg) return;
+      selectedMsgForAction = msg;
+      const isMine = msg.senderId === currentUser.id;
+      document.getElementById('btn-edit-msg').classList.toggle('hidden', !(isMine && msg.type === 'text'));
+      document.getElementById('btn-delete-msg').classList.toggle('hidden', !(isMine || currentUser.isOwner));
+      document.getElementById('msg-action-bar').classList.remove('hidden');
+    };
+
+    window.closeMsgActionBar = function() {
+      selectedMsgForAction = null;
+      document.getElementById('msg-action-bar').classList.add('hidden');
+    };
+
+    window.startReplyToSelected = function() {
+      if (!selectedMsgForAction) return;
+      replyToMsgObj = selectedMsgForAction;
+      editingMsgObj = null;
+      document.getElementById('reply-edit-label').textContent = `Javob: ${replyToMsgObj.senderName}`;
+      document.getElementById('reply-edit-text').textContent = replyToMsgObj.text;
+      document.getElementById('reply-edit-banner').classList.remove('hidden');
+      closeMsgActionBar();
+      document.getElementById('message-input').focus();
+    };
+
+    window.startEditSelected = function() {
+      if (!selectedMsgForAction) return;
+      editingMsgObj = selectedMsgForAction;
+      replyToMsgObj = null;
+      document.getElementById('reply-edit-label').textContent = 'Xabarni tahrirlash:';
+      document.getElementById('reply-edit-text').textContent = editingMsgObj.text;
+      document.getElementById('reply-edit-banner').classList.remove('hidden');
+      const input = document.getElementById('message-input');
+      input.value = editingMsgObj.text;
+      handleMessageInput(input);
+      closeMsgActionBar();
+      input.focus();
+    };
+
+    window.cancelReplyOrEdit = function() {
+      replyToMsgObj = null;
+      editingMsgObj = null;
+      document.getElementById('reply-edit-banner').classList.add('hidden');
+    };
+
+    window.pinSelectedMessage = async function() {
+      if (!selectedMsgForAction || !activeRoomId) return;
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), {
+        pinnedMessageText: selectedMsgForAction.text
+      });
+      closeMsgActionBar();
+      showToast("📌 Xabar chat tepasiga qadaldi!", "success");
+    };
+
+    window.unpinRoomMessage = async function() {
+      if (!activeRoomId) return;
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', activeRoomId), { pinnedMessageText: '' });
+    };
+
+    window.forwardSelectedMessage = async function() {
+      if (!selectedMsgForAction) return;
+      const savedId = `saved_${currentUser.id}`;
+      await ensureSavedMessagesRoom(currentUser.id);
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + savedId), {
+        senderId: currentUser.id,
+        senderName: currentUser.name,
+        forwardedFrom: selectedMsgForAction.senderName,
+        text: selectedMsgForAction.text,
+        imageData: selectedMsgForAction.imageData || '',
+        type: selectedMsgForAction.type || 'text',
+        reactions: {},
+        createdAt: Date.now()
+      });
+      closeMsgActionBar();
+      showToast("🔖 Xabar 'Saqlangan xabarlar' bo'limiga uzatildi!", "success");
+    };
+
+    window.deleteSelectedMessage = async function() {
+      if (!selectedMsgForAction || !activeRoomId) return;
+      await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId, selectedMsgForAction.docId));
+      closeMsgActionBar();
+      showToast("Xabar o'chirildi.", "info");
+    };
+
+    window.applyReaction = async function(emoji, isPremiumOnly = false) {
+      if (isPremiumOnly && !currentUser.isPremium) {
+        showToast("⭐ Bu reaksiya faqat ZenoGram Premium uchun!", "error");
+        closeMsgActionBar();
+        openPremiumModal();
+        return;
+      }
+      if (!selectedMsgForAction) return;
+      const docId = selectedMsgForAction.docId;
+      closeMsgActionBar();
+      await toggleReactionDirect(docId, emoji);
+    };
+
+    window.toggleReactionDirect = async function(docId, emoji) {
+      const msg = activeMessages.find(m => m.docId === docId);
+      if (!msg) return;
+      const reactions = JSON.parse(JSON.stringify(msg.reactions || {}));
+      const userExisting = Object.keys(reactions).filter(e => (reactions[e] || []).includes(currentUser.id));
+
+      if (userExisting.includes(emoji)) {
+        reactions[emoji] = reactions[emoji].filter(id => id !== currentUser.id);
+      } else {
+        const maxR = currentUser.isPremium ? 3 : 1;
+        if (userExisting.length >= maxR) {
+          if (!currentUser.isPremium) {
+            userExisting.forEach(old => { reactions[old] = reactions[old].filter(id => id !== currentUser.id); });
+          } else {
+            showToast("Premium hisobda 3 tagacha reaksiya qo'yish mumkin!", "info");
+            return;
+          }
+        }
+        if (!reactions[emoji]) reactions[emoji] = [];
+        reactions[emoji].push(currentUser.id);
+      }
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + activeRoomId, docId), { reactions });
+    };
+
+    // =========================================================
+    // OWNER PANEL EXTENSIONS (Feature #4)
+    // =========================================================
+    window.openOwnerPanel = function() {
+      if (!currentUser?.isOwner) return;
+      renderOwnerUsersList();
+      document.getElementById('modal-owner').classList.remove('hidden');
+    };
+
+    function renderOwnerUsersList() {
+      const container = document.getElementById('owner-users-list');
+      const statsEl = document.getElementById('owner-stats-summary');
+      if (!container) return;
+      const users = Object.values(allUsersMap).sort((a, b) => (b.isOwner ? 1 : 0) - (a.isOwner ? 1 : 0));
+      if (statsEl) statsEl.textContent = `Jami foydalanuvchilar: ${users.length} • Premium: ${users.filter(u => u.isPremium).length}`;
+
+      container.innerHTML = users.map(u => `
+        <div class="liquid-glass rounded-2xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl ${u.isPremium ? 'premium-aura' : ''} bg-gradient-to-br from-cyan-500 to-teal-700 flex items-center justify-center font-bold text-white shrink-0">
+              ${u.name.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span class="font-bold text-xs text-white">${escapeHTML(u.name)}</span>
+                ${getUserBadgesHTML(u)}
+                ${u.isBanned ? '<span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-500/30 text-rose-200 font-bold">BAN</span>' : ''}
+              </div>
+              <p class="text-[10px] text-cyan-300 font-mono">${escapeHTML(u.username)} • ID: ${u.id}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <button onclick="ownerToggleUserFlag('${u.id}', 'isPremium')" class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold cursor-pointer ${u.isPremium ? 'bg-amber-400 text-slate-950' : 'liquid-glass text-amber-200'}">
+              ⭐ ${u.isPremium ? 'Premium' : '+Premium'}
+            </button>
+            <button onclick="ownerToggleUserFlag('${u.id}', 'isVerified')" class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold cursor-pointer ${u.isVerified ? 'bg-sky-400 text-slate-950' : 'liquid-glass text-sky-200'}">
+              ☑️ ${u.isVerified ? 'Galichka' : '+Galichka'}
+            </button>
+            ${!u.isOwner ? `
+              <button onclick="ownerToggleUserFlag('${u.id}', 'isBanned')" class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold cursor-pointer ${u.isBanned ? 'bg-rose-500 text-white' : 'liquid-glass text-rose-300'}">
+                🚫 ${u.isBanned ? 'Bandan olish' : 'Ban'}
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.ownerToggleUserFlag = async function(targetId, field) {
+      if (!currentUser?.isOwner || !db) return;
+      const targetUser = allUsersMap[targetId];
+      if (!targetUser) return;
+      const newVal = !targetUser[field];
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', targetId), {
+        [field]: newVal,
+        ...(field === 'isPremium' && newVal && !targetUser.emojiStatus ? { emojiStatus: '⭐' } : {})
+      });
+      showToast(`${targetUser.name} yangilandi!`, "success");
+    };
+
+    window.sendOwnerBroadcast = async function() {
+      const text = document.getElementById('owner-broadcast-input').value.trim();
+      if (!text || !currentUser?.isOwner) return;
+      document.getElementById('owner-broadcast-input').value = '';
+      await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'zg_messages_' + GLOBAL_ROOM_ID), {
+        senderId: currentUser.id,
+        senderName: '👑 ILOVA EGASI E\'LONI',
+        senderPremium: true,
+        senderVerified: true,
+        senderEmoji: '👑',
+        text: `📢 RASMIY E'LON: ${text}`,
+        type: 'text',
+        reactions: {},
+        createdAt: Date.now()
+      });
+      await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_rooms', GLOBAL_ROOM_ID), {
+        pinnedMessageText: `📢 ${text}`,
+        lastMessage: `📢 E'lon: ${text}`,
+        lastTime: Date.now()
+      });
+      closeModal('modal-owner');
+      openRoom(GLOBAL_ROOM_ID);
+      showToast("📢 Umumiy e'lon yuborildi va chat tepasiga qadaldi!", "premium");
+    };
+
+    // =========================================================
+    // SETTINGS, THEMES, PROFILE & PREMIUM MODALS
+    // =========================================================
+    window.setWinterTheme = function(themeClass) {
+      document.body.className = `${themeClass} select-none sm:select-auto`;
+      localStorage.setItem(STORAGE_KEY_THEME, themeClass);
+      showToast("❄️ Qishki mavzu o'zgartirildi!", "success");
+    };
+
+    window.togglePrivacySetting = async function(field, val) {
+      if (!currentUser) return;
+      currentUser[field] = val;
+      saveAccountToDevice(currentUser);
+      if (db) await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', currentUser.id), { [field]: val });
+      showToast("Sozlama saqlandi", "success");
+    };
+
+    window.openPremiumModal = function() {
+      if (!currentUser) return;
+      document.getElementById('premium-status-banner').innerHTML = currentUser.isPremium
+        ? `<div><p class="font-bold text-sm text-amber-300">⭐ ZenoGram Premium Faol!</p><p class="text-[11px] text-slate-300">Barcha cheklovlar olib tashlangan.</p></div><span class="px-3 py-1 rounded-full bg-emerald-400/20 text-emerald-300 font-bold">Aktiv</span>`
+        : `<div><p class="font-bold text-sm text-white">Oddiy Tarif</p><p class="text-[11px] text-slate-300">Premium olish uchun Ilova Egasiga murojaat qiling.</p></div><span class="px-3 py-1 rounded-full bg-white/10 text-slate-300 font-bold">Cheklangan</span>`;
+      document.getElementById('modal-premium').classList.remove('hidden');
+    };
+
+    window.setCustomEmojiStatus = async function(emoji) {
+      if (!currentUser?.isPremium) { showToast("🔒 Faqat ZenoGram Premium egalari uchun!", "error"); return; }
+      currentUser.emojiStatus = emoji;
+      updateCurrentUserUI();
+      if (db) await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', currentUser.id), { emojiStatus: emoji });
+      showToast("Emoji status yangilandi!", "success");
+    };
+
+    window.updateBioCounter = function() {
+      const maxBio = currentUser?.isPremium ? 400 : 200;
+      const el = document.getElementById('edit-profile-bio');
+      if (el.value.length > maxBio) el.value = el.value.slice(0, maxBio);
+      document.getElementById('bio-char-count').textContent = `${el.value.length} / ${maxBio}`;
+    };
+
+    window.saveProfileChanges = async function() {
+      if (!currentUser) return;
+      const newName = document.getElementById('edit-profile-name').value.trim() || currentUser.name;
+      const newBio = document.getElementById('edit-profile-bio').value.trim();
+      currentUser.name = newName;
+      currentUser.bio = newBio;
+      saveAccountToDevice(currentUser);
+      updateCurrentUserUI();
+      if (db) await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'zg_users', currentUser.id), { name: newName, bio: newBio });
+      showToast("Profil ma'lumotlari saqlandi!", "success");
+    };
+
+    window.closeModal = function(id) { document.getElementById(id).classList.add('hidden'); };
+
+    window.showToast = function(msg, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const colors = {
+        info: 'border-cyan-400/40 text-cyan-100',
+        success: 'border-emerald-400/50 text-emerald-200',
+        error: 'border-rose-400/50 text-rose-200',
+        premium: 'border-amber-400/60 text-amber-200'
+      };
+      const el = document.createElement('div');
+      el.className = `liquid-glass-strong px-4 py-3 rounded-2xl border ${colors[type] || colors.info} text-xs font-semibold shadow-2xl pointer-events-auto transition-all`;
+      el.textContent = msg;
+      container.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3500);
+    };
+
+    function escapeHTML(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Falling Snow Canvas
+    function initSnowAnimation() {
+      const canvas = document.getElementById('snow-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+      const flakes = Array.from({ length: 65 }, () => ({
+        x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2.5 + 0.8,
+        d: Math.random() * 0.8 + 0.3, drift: Math.random() * 0.6 - 0.3, alpha: Math.random() * 0.55 + 0.2
+      }));
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (const f of flakes) {
+          ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(210, 248, 255, ${f.alpha})`; ctx.fill();
+          f.y += f.d; f.x += f.drift + Math.sin(f.y * 0.01) * 0.25;
+          if (f.y > h) { f.y = -5; f.x = Math.random() * w; }
+          if (f.x > w) f.x = 0; if (f.x < 0) f.x = w;
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // Boot App & Auto-Login Persistent Session
+    window.addEventListener('load', async () => {
+      initSnowAnimation();
+      renderSavedAccountsUI();
+      await initFirebase();
+
+      const activeSavedId = localStorage.getItem(STORAGE_KEY_ACTIVE);
+      if (activeSavedId) {
+        await quickLoginSavedAccount(activeSavedId);
+      }
+    });
+  </script>
+</body>
+</html>
